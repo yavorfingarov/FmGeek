@@ -1,0 +1,179 @@
+@import url("../node_modules/simpledotcss/simple.css");
+
+body {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    padding-left: calc(100vw - 100%);
+}
+
+main {
+    padding-bottom: 1.5rem;
+}
+
+section {
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+img {
+    display: block;
+    &.smaller {
+        height: 32px;
+        width: 32px;
+    }
+}
+
+h1,
+h2 {
+    font-weight: 700;
+    line-height: normal;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+h2 {
+    font-size: 1em;
+}
+
+a {
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input,
+select {
+    width: 10em;
+}
+
+button.flat {
+    color: var(--accent);
+    font-family: inherit;
+    font-size: 1em;
+    background-color: inherit;
+    border: none;
+}
+
+button.flat:hover {
+    filter: none;
+}
+
+textarea {
+    font-family: var(--mono-font);
+    height: 10em;
+    overflow: auto;
+    white-space: pre;
+    resize: vertical;
+}
+
+.flex {
+    display: flex;
+
+    &.column {
+        flex-direction: column;
+    }
+
+    &.space-between {
+        justify-content: space-between;
+    }
+
+    &.center {
+        justify-content: center;
+    }
+
+    &.space-evenly {
+        justify-content: space-evenly;
+    }
+
+    &.center-align {
+        align-items: center;
+    }
+
+    &.wrap {
+        flex-wrap: wrap;
+    }
+
+    &.gap {
+        gap: 1.5em;
+    }
+}
+
+.padding {
+    padding: 0.3em;
+}
+
+.margin {
+    margin: 1.5em 0;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.smaller {
+    font-size: 0.9em;
+}
+
+.error {
+    color: var(--code);
+}
+
+.no-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+body.light,
+body.auto {
+    --bg: #fff;
+    --accent-bg: #f5f7ff;
+    --text: #212121;
+    --text-light: #585858;
+    --border: #898ea4;
+    --accent: #0d47a1;
+    --code: #d81b60;
+    --preformatted: #444;
+    --marked: #ffdd33;
+    --disabled: #efefef;
+    img {
+        filter: opacity(75%);
+    }
+}
+
+@mixin dark {
+    color-scheme: dark;
+    --bg: #212121;
+    --accent-bg: #2b2b2b;
+    --text: #dcdcdc;
+    --text-light: #ababab;
+    --accent: #ffb300;
+    --accent-hover: #ffe099;
+    --code: #f06292;
+    --preformatted: #ccc;
+    --disabled: #111;
+    img {
+        filter: invert(75%);
+    }
+}
+
+body.dark {
+    @include dark();
+}
+
+@media (prefers-color-scheme: dark) {
+    body.auto {
+        @include dark();
+    }
+}
+
+[x-cloak] {
+    display: none !important;
+}

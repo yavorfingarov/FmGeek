@@ -1,0 +1,40 @@
+{
+    "name": "fmgeek",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "pwa:generate-assets": "pwa-assets-generator",
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "style:check": "prettier . --check",
+        "style:fix": "prettier . --write",
+        "test": "vitest --run",
+        "test:update": "vitest run --update",
+        "test:coverage": "vitest run --coverage",
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "devDependencies": {
+        "@vite-pwa/assets-generator": "^0.2.3",
+        "@vitest/coverage-v8": "^1.2.2",
+        "eslint": "^8.56.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-n": "^16.6.2",
+        "eslint-plugin-promise": "^6.1.1",
+        "prettier": "3.2.5",
+        "sass": "^1.70.0",
+        "vite": "^5.0.8",
+        "vite-plugin-handlebars": "^2.0.0",
+        "vite-plugin-live-reload": "^3.0.3",
+        "vite-plugin-pwa": "^0.17.5",
+        "vitest": "^1.2.2"
+    },
+    "dependencies": {
+        "@alpinejs/persist": "^3.13.5",
+        "alpinejs": "^3.13.5",
+        "simpledotcss": "^2.2.1"
+    }
+}

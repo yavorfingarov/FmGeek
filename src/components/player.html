@@ -1,0 +1,59 @@
+<section x-show="$store.navigation.player" x-data="player">
+    <a target="_blank" rel="noopener norefferer nofollow" :href="$store.player.current?.website ?? null">
+        <h1 class="center no-overflow" x-text="$store.player.current?.name"></h1>
+    </a>
+    <div class="flex center">
+        <button class="flat padding no-margin" @click="togglePlay()">
+            <img x-show="status.stopped" src="icons/play.svg" alt="Play" />
+            <img x-show="status.loading" src="icons/dots.svg" alt="Loading" />
+            <img x-show="status.playing" src="icons/stop.svg" alt="Stop" />
+        </button>
+    </div>
+    <audio
+        x-ref="player"
+        @play="status.set('loading')"
+        @playing="onPlaying()"
+        @stalled="status.set('loading')"
+        @error="onError()"
+        @pause="status.set('stopped')"
+        @timer-stop.window="$el.pause()"
+    ></audio>
+    <p class="center smaller error" x-text="error"></p>
+    <div class="flex center wrap smaller margin">
+        <template x-for="(station, index) in recent">
+            <div class="no-overflow">
+                <button class="flat padding no-margin" x-text="station.name" @click="selectStation(station)"></button>
+                <template x-if="index < recent.length - 1">
+                    <span>/</span>
+                </template>
+            </div>
+        </template>
+    </div>
+    <template x-if="$store.settings.stations[0].name">
+        <div class="flex space-evenly wrap">
+            <template x-for="station in $store.settings.stations">
+                <button
+                    class="flat padding no-margin no-overflow"
+                    x-text="station.name"
+                    @click="selectStation(station)"
+                ></button>
+            </template>
+        </div>
+    </template>
+    <template x-if="$store.settings.stations[0].groupName">
+        <template x-for="group in $store.settings.stations">
+            <div>
+                <h2 class="center padding no-margin no-overflow" x-text="group.groupName"></h2>
+                <div class="flex space-evenly wrap">
+                    <template x-for="station in group.stations">
+                        <button
+                            class="flat padding no-margin no-overflow"
+                            x-text="station.name"
+                            @click="selectStation(station, group.prependToStationName ? group.groupName : null)"
+                        ></button>
+                    </template>
+                </div>
+            </div>
+        </template>
+    </template>
+</section>
