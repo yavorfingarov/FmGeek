@@ -1,0 +1,159 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`parseStations > throws on invalid JSON (   ) 1`] = `[SyntaxError: Unexpected end of JSON input]`;
+
+exports[`parseStations > throws on invalid JSON () 1`] = `[SyntaxError: Unexpected end of JSON input]`;
+
+exports[`parseStations > throws on invalid JSON ({) 1`] = `[SyntaxError: Expected property name or '}' in JSON at position 1]`;
+
+exports[`parseStations > throws on invalid JSON (test) 1`] = `[SyntaxError: Unexpected token 'e', "test" is not valid JSON]`;
+
+exports[`parseStations > throws on invalid JSON (undefined) 1`] = `[SyntaxError: "undefined" is not valid JSON]`;
+
+exports[`parseStations > throws on invalid root data structure ([]) 1`] = `[Error: Unexpected value]`;
+
+exports[`parseStations > throws on invalid root data structure ({}) 1`] = `[Error: Unexpected value]`;
+
+exports[`parseStations > throws on invalid root data structure (null) 1`] = `[Error: Unexpected value]`;
+
+exports[`parseStations > with grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testGroup0 testName0']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName ('   ') 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName ('') 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName ([]) 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName (42) 1`] = `[Error: Unexpected value at index 0 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName (null) 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid groupName (true) 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
+
+exports[`parseStations > with grouping > throws on invalid prependToStationName ('   ') 1`] = `[Error: Unexpected value in group 'testGroup2' for 'prependToStationName']`;
+
+exports[`parseStations > with grouping > throws on invalid prependToStationName ('') 1`] = `[Error: Unexpected value in group 'testGroup2' for 'prependToStationName']`;
+
+exports[`parseStations > with grouping > throws on invalid prependToStationName ([]) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'prependToStationName']`;
+
+exports[`parseStations > with grouping > throws on invalid prependToStationName (42) 1`] = `[Error: Unexpected value in group 'testGroup0' for 'prependToStationName']`;
+
+exports[`parseStations > with grouping > throws on invalid prependToStationName (null) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'prependToStationName']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = '   ') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = '') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = []) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = {}) 1`] = `[Error: Unexpected value in group 'testGroup0' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = 42) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = null) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 0 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('name' = true) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'name']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = '   ') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = '') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = []) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = {}) 1`] = `[Error: Unexpected value in group 'testGroup0' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = 42) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = null) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 0 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('stream' = true) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'stream']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = '   ') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = '') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 0 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = []) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = {}) 1`] = `[Error: Unexpected value in group 'testGroup0' at index 3 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = 42) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid property value ('website' = true) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3 for 'website']`;
+
+exports[`parseStations > with grouping > throws on invalid station ('   ') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3]`;
+
+exports[`parseStations > with grouping > throws on invalid station ('') 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3]`;
+
+exports[`parseStations > with grouping > throws on invalid station ([]) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3]`;
+
+exports[`parseStations > with grouping > throws on invalid station (42) 1`] = `[Error: Unexpected value in group 'testGroup0' at index 3]`;
+
+exports[`parseStations > with grouping > throws on invalid station (null) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 0]`;
+
+exports[`parseStations > with grouping > throws on invalid station (true) 1`] = `[Error: Unexpected value in group 'testGroup2' at index 3]`;
+
+exports[`parseStations > with grouping > throws on invalid stations ('   ') 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
+
+exports[`parseStations > with grouping > throws on invalid stations ('') 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
+
+exports[`parseStations > with grouping > throws on invalid stations ([]) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
+
+exports[`parseStations > with grouping > throws on invalid stations (42) 1`] = `[Error: Unexpected value in group 'testGroup0' for 'stations']`;
+
+exports[`parseStations > with grouping > throws on invalid stations (null) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
+
+exports[`parseStations > with grouping > throws on invalid stations (true) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
+
+exports[`parseStations > without grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testName0']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = '   ') 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = '') 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = []) 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = {}) 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = 42) 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = null) 1`] = `[Error: Unexpected value at index 0 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('name' = true) 1`] = `[Error: Unexpected value at index 3 for 'name']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = '   ') 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = '') 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = []) 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = {}) 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = 42) 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = null) 1`] = `[Error: Unexpected value at index 0 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('stream' = true) 1`] = `[Error: Unexpected value at index 3 for 'stream']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = '   ') 1`] = `[Error: Unexpected value at index 3 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = '') 1`] = `[Error: Unexpected value at index 0 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = []) 1`] = `[Error: Unexpected value at index 3 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = {}) 1`] = `[Error: Unexpected value at index 3 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = 42) 1`] = `[Error: Unexpected value at index 3 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid property value ('website' = true) 1`] = `[Error: Unexpected value at index 3 for 'website']`;
+
+exports[`parseStations > without grouping > throws on invalid station ('   ') 1`] = `[Error: Unexpected value at index 3]`;
+
+exports[`parseStations > without grouping > throws on invalid station ('') 1`] = `[Error: Unexpected value at index 3]`;
+
+exports[`parseStations > without grouping > throws on invalid station ([]) 1`] = `[Error: Unexpected value at index 3]`;
+
+exports[`parseStations > without grouping > throws on invalid station (42) 1`] = `[Error: Unexpected value at index 3]`;
+
+exports[`parseStations > without grouping > throws on invalid station (null) 1`] = `[Error: Unexpected value at index 0]`;
+
+exports[`parseStations > without grouping > throws on invalid station (true) 1`] = `[Error: Unexpected value at index 3]`;

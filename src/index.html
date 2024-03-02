@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="Listen to your favorite radio stations!" />
+        <meta name="keywords" content="radio, music, app, pwa" />
+        <meta name="author" content="Yavor Fingarov" />
+        <meta name="theme-color" content="#0d47a1" />
+        <title x-data x-text="$store.player.current?.name ?? 'FmGeek'"></title>
+        <link rel="icon" href="./icons/favicon.ico" sizes="48x48" />
+        <link rel="icon" href="./icons/favicon.svg" sizes="any" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180x180.png" />
+        <link rel="stylesheet" href="./style.scss" />
+        <script type="module" src="./main.js"></script>
+    </head>
+    <body x-data :class="$store.settings.ui.theme">
+        <noscript>
+            <p class="center error">Please enable JavaScript to use this application.</p>
+        </noscript>
+        <main x-data x-cloak>
+            <!---->
+            {{> header }}
+            <!---->
+            {{> navigation }}
+            <!---->
+            {{> settings }}
+            <!---->
+            {{> about }}
+            <!---->
+            {{> privacy }}
+            <!---->
+            {{> player }}
+            <!---->
+        </main>
+    </body>
+</html>

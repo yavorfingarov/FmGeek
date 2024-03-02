@@ -1,0 +1,74 @@
+<section x-show="$store.navigation.settings" x-data="settings">
+    <h1>Settings</h1>
+    <form>
+        <fieldset>
+            <legend>Sleep Timer</legend>
+            <label for="timer">Hours</label>
+            <input id="timer" type="time" x-show="!timer" x-model="timeout" />
+            <input id="timer" type="time" disabled x-show="timer" :value="timeLeft" />
+            <br />
+            <button x-text="(timer) ? 'Stop' : 'Start'" @click.prevent="toggleTimer()"></button>
+        </fieldset>
+        <fieldset>
+            <legend>User Interface</legend>
+            <label for="theme">Theme</label>
+            <select id="theme" x-model="$store.settings.ui.theme">
+                <option value="auto">Auto</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+            <label for="recent-count">Recent stations</label>
+            <input
+                id="recent-count"
+                type="number"
+                min="0"
+                :max="$store.settings.historyLength"
+                x-model.number="$store.settings.ui.recentCount"
+            />
+        </fieldset>
+        <fieldset>
+            <legend>Edit</legend>
+            <label for="edit">Stations</label>
+            <textarea id="edit" class="smaller" spellcheck="false" x-model="json"></textarea>
+            <details>
+                <summary>Help</summary>
+                <p>
+                    Depending on your preferences you can have a <code>Station</code> list or a
+                    <code>StationGroup</code> list.
+                </p>
+                <dl>
+                    <dt>Station</dt>
+                    <dd>
+                        <dl>
+                            <dt>name</dt>
+                            <dd>String</dd>
+                            <dt>stream</dt>
+                            <dd>String</dd>
+                            <dt>website</dt>
+                            <dd>String <em>(optional)</em></dd>
+                        </dl>
+                    </dd>
+                    <dt>StationGroup</dt>
+                    <dd>
+                        <dl>
+                            <dt>groupName</dt>
+                            <dd>String</dd>
+                            <dt>prependToStationName</dt>
+                            <dd>Boolean</dd>
+                            <dt>stations</dt>
+                            <dd>Station[]</dd>
+                        </dl>
+                    </dd>
+                </dl>
+            </details>
+            <button @click.prevent="save()">Save</button>
+            <button @click.prevent="copy()">Copy</button>
+            <button @click.prevent="discardChanges()">Discard changes</button>
+            <p class="error" x-show="error" x-text="error"></p>
+        </fieldset>
+        <fieldset>
+            <legend>Danger Zone</legend>
+            <button @click.prevent="reset()">Factory reset</button>
+        </fieldset>
+    </form>
+</section>
