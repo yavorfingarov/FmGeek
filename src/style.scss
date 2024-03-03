@@ -55,6 +55,9 @@ button.flat {
     font-size: 1em;
     background-color: inherit;
     border: none;
+    &.no-hover-effect:hover {
+        filter: none;
+    }
 }
 
 textarea {
