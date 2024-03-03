@@ -3,10 +3,10 @@ export function generateStations(count, func) {
     for (let i = 0; i < count; i++) {
         const station = {
             name: `testName${i}`,
-            stream: `testStream${i}`
+            stream: `https://testStream${i}.com`
         };
         if (i % 2 === 0) {
-            station.website = `testWebsite${i}`;
+            station.website = `https://testWebsite${i}.com`;
         }
         stations.push(station);
     }

@@ -11,12 +11,12 @@
     </div>
     <audio
         x-ref="player"
-        @play="status.set('loading')"
+        @play="onLoading()"
         @playing="onPlaying()"
-        @stalled="status.set('loading')"
+        @stalled="onLoading()"
         @error="onError()"
-        @pause="status.set('stopped')"
-        @timer-stop.window="$el.pause()"
+        @pause="pause()"
+        @timer-stop.window="pause()"
     ></audio>
     <p class="center smaller error" x-text="error"></p>
     <div class="flex center wrap smaller margin">

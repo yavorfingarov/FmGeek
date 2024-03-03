@@ -1,5 +1,9 @@
 import {getStationDisplayName} from "./common/helpers";
-import {getDuplicateStationNameErrorMessage, getParseStationsErrorMessage} from "./common/messages";
+import {
+    getDuplicateStationNameErrorMessage,
+    getParseStationsErrorMessage,
+    getUnsupportedStreamErrorMessage
+} from "./common/messages";
 
 export function parseStations(json) {
     const data = JSON.parse(json);
@@ -42,6 +46,10 @@ function validateStation(stationNames, index, station, groupName) {
     }
     if (station.website != null && !isValid(station.website)) {
         throwParseStationsError({index, groupName, property: "website"});
+    }
+    if (!station.stream.startsWith("https://")) {
+        const message = getUnsupportedStreamErrorMessage(groupName, station.name);
+        throw Error(message);
     }
     const stationName = getStationDisplayName(groupName, station.name);
     if (stationNames.has(stationName)) {

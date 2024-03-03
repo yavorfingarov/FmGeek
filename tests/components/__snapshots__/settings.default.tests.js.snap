@@ -276,7 +276,7 @@ exports[`defaultStations > matches snapshot 1`] = `
       },
       {
         "name": "DR P8 Jazz",
-        "stream": "http://live-icy.gslb01.dr.dk/A/A22H.mp3",
+        "stream": "https://drliveradio.akamaized.net/hls/live/2022411/p8jazz/masterab.m3u8",
         "website": "https://www.dr.dk/lyd/playlister/p8jazz",
       },
       {
@@ -286,7 +286,7 @@ exports[`defaultStations > matches snapshot 1`] = `
       },
       {
         "name": "PR Niezły Jazz",
-        "stream": "http://mp3.polskieradio.pl:8184/;",
+        "stream": "https://stream85.polskieradio.pl/omniaaxe/k103.stream/playlist.m3u8",
         "website": "https://moje.polskieradio.pl/#/115?gsid=106",
       },
       {

@@ -27,3 +27,12 @@ export function getParseStationsErrorMessage(groupName, index, property) {
 export function getDuplicateStationNameErrorMessage(stationName) {
     return `Duplicate station name '${stationName}'`;
 }
+
+export function getUnsupportedStreamErrorMessage(groupName, stationName) {
+    let message = "Unsupported stream";
+    if (groupName) {
+        message += ` in group '${groupName}'`;
+    }
+    message += ` for station '${stationName}'`;
+    return message;
+}

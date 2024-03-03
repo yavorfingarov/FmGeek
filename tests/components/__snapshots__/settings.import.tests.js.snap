@@ -104,6 +104,8 @@ exports[`parseStations > with grouping > throws on invalid stations (null) 1`] =
 
 exports[`parseStations > with grouping > throws on invalid stations (true) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
 
+exports[`parseStations > with grouping > throws on unsupported stream 1`] = `[Error: Unsupported stream in group 'testGroup2' for station 'testName3']`;
+
 exports[`parseStations > without grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testName0']`;
 
 exports[`parseStations > without grouping > throws on invalid property value ('name' = '   ') 1`] = `[Error: Unexpected value at index 3 for 'name']`;
@@ -157,3 +159,5 @@ exports[`parseStations > without grouping > throws on invalid station (42) 1`] =
 exports[`parseStations > without grouping > throws on invalid station (null) 1`] = `[Error: Unexpected value at index 0]`;
 
 exports[`parseStations > without grouping > throws on invalid station (true) 1`] = `[Error: Unexpected value at index 3]`;
+
+exports[`parseStations > without grouping > throws on unsupported stream 1`] = `[Error: Unsupported stream for station 'testName2']`;
