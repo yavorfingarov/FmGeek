@@ -2,7 +2,7 @@ export const manifest = {
     name: "FmGeek",
     description: "Listen to your favorite radio stations!",
     start_url: "/",
-    display: "fullscreen",
+    display: "standalone",
     theme_color: "#0d47a1",
     icons: [
         {

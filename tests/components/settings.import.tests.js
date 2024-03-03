@@ -87,6 +87,14 @@ describe("parseStations", function () {
             expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
         });
 
+        test("throws on unsupported stream", function () {
+            const groups = generateGroups(5, function (x) {
+                x[2].stations[3].stream = "http://testStream.com";
+            });
+            const input = JSON.stringify(groups);
+            expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
+        });
+
         test("throws on duplicate station name", function () {
             const stations = [...generateGroups(5), ...generateGroups(1)];
             const input = JSON.stringify(stations);
@@ -113,6 +121,14 @@ describe("parseStations", function () {
         test.each(propertyTestCases)("throws on invalid property value ($propertyName = $value)", function (testCase) {
             const stations = generateStations(5, function (x) {
                 x[testCase.stationIndex][testCase.propertyName] = testCase.value;
+            });
+            const input = JSON.stringify(stations);
+            expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
+        });
+
+        test("throws on unsupported stream", function () {
+            const stations = generateStations(5, function (x) {
+                x[2].stream = "http://testStream.com";
             });
             const input = JSON.stringify(stations);
             expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();

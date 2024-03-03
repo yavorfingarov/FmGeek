@@ -17,3 +17,6 @@ A clear and concise description of what you expected to happen.
 
 **Browser version**
 E.g. Edge 122.0.2365.66
+
+**Stream URL**
+E.g. https://example.com/mp3
