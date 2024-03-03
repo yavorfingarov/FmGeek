@@ -7,7 +7,6 @@ import {
     discardChangesConfirmMessage,
     resetConfirmMessage
 } from "./common/messages";
-import {convertTime} from "./common/helpers";
 
 export function settings() {
     Alpine.store("settings", {
@@ -24,22 +23,20 @@ export function settings() {
             },
             timeout: this.$persist(defaultTimeout),
             timer: null,
-            timeLeft: null,
+            minutesLeft: null,
             toggleTimer() {
                 if (this.timer) {
                     this.stopTimer();
-                } else if (this.timeout !== "00:00") {
-                    this.timeLeft = this.timeout;
+                } else if (this.timeout !== 0) {
+                    this.minutesLeft = this.timeout;
                     this.timer = setInterval(() => this.tick(), 60 * 1000);
                 }
             },
             tick() {
-                const minutesLeft = convertTime(this.timeLeft) - 1;
-                if (minutesLeft === 0) {
+                this.minutesLeft--;
+                if (this.minutesLeft === 0) {
                     this.stopTimer();
                     this.$dispatch("timer-stop");
-                } else {
-                    this.timeLeft = convertTime(minutesLeft);
                 }
             },
             stopTimer() {
