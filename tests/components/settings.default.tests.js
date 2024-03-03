@@ -2,7 +2,7 @@ import {describe, expect, test} from "vitest";
 import {defaultUiSettings, historyLength, defaultStations, defaultTimeout} from "../../src/components/settings.default";
 
 test("defaultTimeout", function () {
-    expect(defaultTimeout).toBe("02:00");
+    expect(defaultTimeout).toBe(120);
 });
 
 test("defaultUiSettings", function () {

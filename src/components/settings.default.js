@@ -1,4 +1,4 @@
-export const defaultTimeout = "02:00";
+export const defaultTimeout = 120;
 
 export const defaultUiSettings = {
     theme: "auto",
@@ -84,12 +84,12 @@ export const defaultStations = [
             },
             {
                 name: "ABC Classic",
-                stream: "http://live-radio01.mediahubaustralia.com/2FMW/aac",
+                stream: "https://live-radio01.mediahubaustralia.com/2FMW/aac",
                 website: "https://www.abc.net.au/listen/classic"
             },
             {
                 name: "ABC Classic 2",
-                stream: "http://live-radio01.mediahubaustralia.com/FM2W/aac",
+                stream: "https://live-radio01.mediahubaustralia.com/FM2W/aac",
                 website: "https://www.abc.net.au/listen/live/classic2"
             },
             {
@@ -231,7 +231,7 @@ export const defaultStations = [
             },
             {
                 name: "Opéra",
-                stream: "http://icecast.radiofrance.fr/francemusiqueopera-hifi.aac",
+                stream: "https://icecast.radiofrance.fr/francemusiqueopera-hifi.aac",
                 website: "https://www.radiofrance.fr/francemusique"
             },
             {
@@ -251,7 +251,7 @@ export const defaultStations = [
             },
             {
                 name: "Films",
-                stream: "http://icecast.radiofrance.fr/francemusiquelabo-hifi.aac",
+                stream: "https://icecast.radiofrance.fr/francemusiquelabo-hifi.aac",
                 website: "https://www.radiofrance.fr/francemusique"
             },
             {
@@ -317,17 +317,17 @@ export const defaultStations = [
             },
             {
                 name: "WBGO Newark",
-                stream: "http://wbgo.streamguys.net/wbgo",
+                stream: "https://wbgo.streamguys1.com/wbgo",
                 website: "https://www.wbgo.org/"
             },
             {
                 name: "WBGO The Jazz Bee",
-                stream: "http://wbgo.streamguys.net/thejazzstream",
+                stream: "https://wbgo.streamguys1.com/thejazzstream",
                 website: "https://www.wbgo.org/"
             },
             {
                 name: "Jazz 88 San Diego",
-                stream: "http://listen.jazz88.org/ksds.mp3",
+                stream: "https://ksds-ice.streamguys1.com/ksds.mp3",
                 website: "https://www.jazz88.org/"
             },
             {
@@ -337,7 +337,7 @@ export const defaultStations = [
             },
             {
                 name: "KMHD Portland",
-                stream: "http://stream1.opb.org/kmhd.mp3",
+                stream: "https://ais-sa3.cdnstream1.com/2442_128.aac",
                 website: "https://www.kmhd.org/"
             },
             {

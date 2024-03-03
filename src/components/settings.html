@@ -3,9 +3,9 @@
     <form>
         <fieldset>
             <legend>Sleep Timer</legend>
-            <label for="timer">Hours</label>
-            <input id="timer" type="time" x-show="!timer" x-model="timeout" />
-            <input id="timer" type="time" disabled x-show="timer" :value="timeLeft" />
+            <label for="timer">Minutes</label>
+            <input id="timer" type="number" min="0" x-show="!timer" x-model.number="timeout" />
+            <input id="timer" type="number" disabled x-show="timer" :value="minutesLeft" />
             <br />
             <button x-text="(timer) ? 'Stop' : 'Start'" @click.prevent="toggleTimer()"></button>
         </fieldset>
