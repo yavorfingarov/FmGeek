@@ -20,7 +20,7 @@
     ></audio>
     <p class="center smaller error" x-text="error"></p>
     <div class="flex center wrap smaller margin">
-        <template x-for="(station, index) in recent">
+        <template x-for="(station, index) in recent" :key="station.name">
             <div class="no-overflow">
                 <button class="flat padding no-margin" x-text="station.name" @click="selectStation(station)"></button>
                 <template x-if="index < recent.length - 1">
@@ -31,7 +31,7 @@
     </div>
     <template x-if="$store.settings.stations[0].name">
         <div class="flex space-evenly wrap">
-            <template x-for="station in $store.settings.stations">
+            <template x-for="station in $store.settings.stations" :key="station.name">
                 <button
                     class="flat padding no-margin no-overflow"
                     x-text="station.name"
@@ -41,11 +41,11 @@
         </div>
     </template>
     <template x-if="$store.settings.stations[0].groupName">
-        <template x-for="group in $store.settings.stations">
+        <template x-for="group in $store.settings.stations" :key="group.groupName">
             <div>
                 <h2 class="center padding no-margin no-overflow" x-text="group.groupName"></h2>
                 <div class="flex space-evenly wrap">
-                    <template x-for="station in group.stations">
+                    <template x-for="station in group.stations" :key="station.name">
                         <button
                             class="flat padding no-margin no-overflow"
                             x-text="station.name"
