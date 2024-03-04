@@ -45,7 +45,7 @@ describe("parseStations", function () {
 
     describe("with grouping", function () {
         test.each(stationTestCases)("throws on invalid groupName ($value)", function (testCase) {
-            const groups = generateGroups(5, function (x) {
+            const groups = generateGroups(5, (x) => {
                 x[testCase.groupIndex].groupName = testCase.value;
             });
             const input = JSON.stringify(groups);
@@ -55,7 +55,7 @@ describe("parseStations", function () {
         test.each(stationTestCases.filter((x) => x.value !== true))(
             "throws on invalid prependToStationName ($value)",
             function (testCase) {
-                const groups = generateGroups(5, function (x) {
+                const groups = generateGroups(5, (x) => {
                     x[testCase.groupIndex].prependToStationName = testCase.value;
                 });
                 const input = JSON.stringify(groups);
@@ -64,7 +64,7 @@ describe("parseStations", function () {
         );
 
         test.each(stationTestCases)("throws on invalid stations ($value)", function (testCase) {
-            const groups = generateGroups(5, function (x) {
+            const groups = generateGroups(5, (x) => {
                 x[testCase.groupIndex].stations = testCase.value;
             });
             const input = JSON.stringify(groups);
@@ -72,7 +72,7 @@ describe("parseStations", function () {
         });
 
         test.each(stationTestCases)("throws on invalid station ($value)", function (testCase) {
-            const groups = generateGroups(5, function (x) {
+            const groups = generateGroups(5, (x) => {
                 x[testCase.groupIndex].stations[testCase.stationIndex] = testCase.value;
             });
             const input = JSON.stringify(groups);
@@ -80,7 +80,7 @@ describe("parseStations", function () {
         });
 
         test.each(propertyTestCases)("throws on invalid property value ($propertyName = $value)", function (testCase) {
-            const groups = generateGroups(5, function (x) {
+            const groups = generateGroups(5, (x) => {
                 x[testCase.groupIndex].stations[testCase.stationIndex][testCase.propertyName] = testCase.value;
             });
             const input = JSON.stringify(groups);
@@ -88,16 +88,32 @@ describe("parseStations", function () {
         });
 
         test("throws on unsupported stream", function () {
-            const groups = generateGroups(5, function (x) {
+            const groups = generateGroups(5, (x) => {
                 x[2].stations[3].stream = "http://testStream.com";
             });
             const input = JSON.stringify(groups);
             expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
         });
 
-        test("throws on duplicate station name", function () {
-            const stations = [...generateGroups(5), ...generateGroups(1)];
+        test("throws on duplicate group name", function () {
+            const stations = [...generateGroups(5), {groupName: "testGroup2", prependToStationName: true}];
             const input = JSON.stringify(stations);
+            expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
+        });
+
+        test("throws on duplicate station name", function () {
+            const group = {
+                groupName: "testGroup5",
+                prependToStationName: false,
+                stations: [
+                    {
+                        name: "testGroup2 testName11",
+                        stream: "https://testStream3.com"
+                    }
+                ]
+            };
+            const groups = [...generateGroups(5), group];
+            const input = JSON.stringify(groups);
             expect(() => parseStations(input)).toThrowErrorMatchingSnapshot();
         });
 
@@ -111,7 +127,7 @@ describe("parseStations", function () {
 
     describe("without grouping", function () {
         test.each(stationTestCases)("throws on invalid station ($value)", function (testCase) {
-            const stations = generateStations(5, function (x) {
+            const stations = generateStations(5, (x) => {
                 x[testCase.stationIndex] = testCase.value;
             });
             const input = JSON.stringify(stations);
@@ -119,7 +135,7 @@ describe("parseStations", function () {
         });
 
         test.each(propertyTestCases)("throws on invalid property value ($propertyName = $value)", function (testCase) {
-            const stations = generateStations(5, function (x) {
+            const stations = generateStations(5, (x) => {
                 x[testCase.stationIndex][testCase.propertyName] = testCase.value;
             });
             const input = JSON.stringify(stations);
@@ -127,7 +143,7 @@ describe("parseStations", function () {
         });
 
         test("throws on unsupported stream", function () {
-            const stations = generateStations(5, function (x) {
+            const stations = generateStations(5, (x) => {
                 x[2].stream = "http://testStream.com";
             });
             const input = JSON.stringify(stations);

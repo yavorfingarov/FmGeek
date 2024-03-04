@@ -1,6 +1,7 @@
-export function generateStations(count, func) {
+export function generateStations(count, func, start) {
     const stations = [];
-    for (let i = 0; i < count; i++) {
+    start ??= 0;
+    for (let i = start; i < start + count; i++) {
         const station = {
             name: `testName${i}`,
             stream: `https://testStream${i}.com`
@@ -22,7 +23,7 @@ export function generateGroups(count, func) {
         const group = {
             groupName: `testGroup${i}`,
             prependToStationName: i % 2 === 0,
-            stations: generateStations(5)
+            stations: generateStations(4, null, i * 4)
         };
         groups.push(group);
     }

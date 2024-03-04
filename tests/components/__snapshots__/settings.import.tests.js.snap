@@ -16,7 +16,9 @@ exports[`parseStations > throws on invalid root data structure ({}) 1`] = `[Erro
 
 exports[`parseStations > throws on invalid root data structure (null) 1`] = `[Error: Unexpected value]`;
 
-exports[`parseStations > with grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testGroup0 testName0']`;
+exports[`parseStations > with grouping > throws on duplicate group name 1`] = `[Error: Duplicate group name 'testGroup2']`;
+
+exports[`parseStations > with grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testGroup2 testName11']`;
 
 exports[`parseStations > with grouping > throws on invalid groupName ('   ') 1`] = `[Error: Unexpected value at index 2 for 'groupName']`;
 
@@ -104,7 +106,7 @@ exports[`parseStations > with grouping > throws on invalid stations (null) 1`] =
 
 exports[`parseStations > with grouping > throws on invalid stations (true) 1`] = `[Error: Unexpected value in group 'testGroup2' for 'stations']`;
 
-exports[`parseStations > with grouping > throws on unsupported stream 1`] = `[Error: Unsupported stream in group 'testGroup2' for station 'testName3']`;
+exports[`parseStations > with grouping > throws on unsupported stream 1`] = `[Error: Unsupported stream in group 'testGroup2' for station 'testName11']`;
 
 exports[`parseStations > without grouping > throws on duplicate station name 1`] = `[Error: Duplicate station name 'testName0']`;
 

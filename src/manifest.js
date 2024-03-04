@@ -1,9 +1,10 @@
 export const manifest = {
     name: "FmGeek",
+    short_name: "FmGeek",
     description: "Listen to your favorite radio stations!",
     start_url: "/",
     display: "standalone",
-    theme_color: "#0d47a1",
+    theme_color: "#212121",
     icons: [
         {
             src: "pwa-64x64.png",
