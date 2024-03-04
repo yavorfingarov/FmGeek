@@ -38,12 +38,6 @@ h2 {
     font-size: 1em;
 }
 
-a {
-    white-space: nowrap;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 input,
 select {
     width: 10em;
@@ -128,6 +122,10 @@ textarea {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.no-decoration {
+    text-decoration: none;
 }
 
 body.light,

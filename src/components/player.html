@@ -1,5 +1,10 @@
 <section x-show="$store.navigation.player" x-data="player">
-    <a target="_blank" rel="noopener norefferer nofollow" :href="$store.player.current?.website ?? null">
+    <a
+        class="no-decoration"
+        target="_blank"
+        rel="noopener norefferer nofollow"
+        :href="$store.player.current?.website ?? null"
+    >
         <h1 class="center no-overflow" x-text="$store.player.current?.name"></h1>
     </a>
     <div class="flex center">

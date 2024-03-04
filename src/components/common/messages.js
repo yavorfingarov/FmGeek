@@ -10,10 +10,10 @@ export const discardChangesConfirmMessage = "All changes will be lost. Continue?
 export const resetConfirmMessage =
     "You are about to irreversibly reset the application into its initial state. Are you sure?";
 
-export function getParseStationsErrorMessage(groupName, index, property) {
+export function getParseStationsErrorMessage(group, index, property) {
     let message = "Unexpected value";
-    if (groupName) {
-        message += ` in group '${groupName}'`;
+    if (group) {
+        message += ` in group '${group}'`;
     }
     if (typeof index === "number") {
         message += ` at index ${index}`;
@@ -24,8 +24,8 @@ export function getParseStationsErrorMessage(groupName, index, property) {
     return message;
 }
 
-export function getDuplicateStationNameErrorMessage(stationName) {
-    return `Duplicate station name '${stationName}'`;
+export function getDuplicateValueErrorMessage(property, value) {
+    return `Duplicate ${property} '${value}'`;
 }
 
 export function getUnsupportedStreamErrorMessage(groupName, stationName) {

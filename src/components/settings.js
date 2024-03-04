@@ -24,6 +24,15 @@ export function settings() {
             timeout: this.$persist(defaultTimeout),
             timer: null,
             minutesLeft: null,
+            checkInput(element) {
+                const value = element._x_model.get();
+                if (element.min && value < element.min) {
+                    element._x_model.set(+element.min);
+                }
+                if (element.max && value > element.max) {
+                    element._x_model.set(+element.max);
+                }
+            },
             toggleTimer() {
                 if (this.timer) {
                     this.stopTimer();
