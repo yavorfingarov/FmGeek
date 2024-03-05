@@ -19,6 +19,7 @@ export function settings() {
         return {
             init() {
                 this.json = JSON.stringify(this.$store.settings.stations, null, 2);
+                this.jsonDirty = false;
                 this.error = null;
             },
             timeout: this.$persist(defaultTimeout),
@@ -63,6 +64,7 @@ export function settings() {
                 }
                 if (confirm(saveConfirmMessage)) {
                     this.$store.settings.stations = stations;
+                    this.init();
                 }
             },
             copy() {

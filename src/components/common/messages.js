@@ -1,14 +1,14 @@
 export const playbackErrorMessage = "Could not play this station.";
 
 export const saveConfirmMessage =
-    "This action is irrevisible and might lead to data loss. Make sure you have backup of your data. Continue?";
+    "This action is irreversible and might lead to data loss. Please make sure you have a backup of your data. Continue?";
 
 export const copyErrorMessage = "Could not copy to clipboard.";
 
 export const discardChangesConfirmMessage = "All changes will be lost. Continue?";
 
 export const resetConfirmMessage =
-    "You are about to irreversibly reset the application into its initial state. Are you sure?";
+    "You are about to irreversibly reset the application to its initial state. Please make sure you have a backup of your data. Continue?";
 
 export function getParseStationsErrorMessage(group, index, property) {
     let message = "Unexpected value";
@@ -28,11 +28,11 @@ export function getDuplicateValueErrorMessage(property, value) {
     return `Duplicate ${property} '${value}'`;
 }
 
-export function getUnsupportedStreamErrorMessage(groupName, stationName) {
+export function getUnsupportedStreamErrorMessage(group, station) {
     let message = "Unsupported stream";
-    if (groupName) {
-        message += ` in group '${groupName}'`;
+    if (group) {
+        message += ` in group '${group}'`;
     }
-    message += ` for station '${stationName}'`;
+    message += ` for station '${station}'`;
     return message;
 }

@@ -3,9 +3,18 @@
     <form>
         <fieldset>
             <legend>Sleep Timer</legend>
-            <label for="timer">Minutes</label>
-            <input id="timer" type="number" min="0" x-show="!timer" x-model.number="timeout" @input="checkInput($el)" />
-            <input id="timer" type="number" disabled x-show="timer" :value="minutesLeft" />
+            <label for="timer" x-show="!timer">Minutes</label>
+            <input
+                id="timer"
+                type="number"
+                min="1"
+                max="525600"
+                x-show="!timer"
+                x-model.number="timeout"
+                @input="checkInput($el)"
+            />
+            <label for="active-timer" x-show="timer">Minutes left</label>
+            <input id="active-timer" type="number" disabled x-show="timer" :value="minutesLeft" />
             <br />
             <button x-text="(timer) ? 'Stop' : 'Start'" @click.prevent="toggleTimer()"></button>
         </fieldset>
@@ -30,7 +39,7 @@
         <fieldset>
             <legend>Edit</legend>
             <label for="edit">Stations</label>
-            <textarea id="edit" class="smaller" spellcheck="false" x-model="json"></textarea>
+            <textarea id="edit" class="smaller" spellcheck="false" x-model="json" @input="jsonDirty = true"></textarea>
             <details>
                 <summary>Help</summary>
                 <p>
@@ -62,9 +71,9 @@
                     </dd>
                 </dl>
             </details>
-            <button @click.prevent="save()">Save</button>
             <button @click.prevent="copy()">Copy</button>
-            <button @click.prevent="discardChanges()">Discard changes</button>
+            <button :disabled="!jsonDirty" @click.prevent="discardChanges()">Discard changes</button>
+            <button :disabled="!jsonDirty" @click.prevent="save()">Save</button>
             <p class="error" x-show="error" x-text="error"></p>
         </fieldset>
         <fieldset>
