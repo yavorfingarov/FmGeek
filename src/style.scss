@@ -98,6 +98,10 @@ textarea {
     padding: 0.3em;
 }
 
+.no-padding {
+    padding: 0;
+}
+
 .margin {
     margin: 1.5em 0;
 }
@@ -130,7 +134,7 @@ textarea {
 
 body.light,
 body.auto {
-    --bg: #fff;
+    --bg: #fefefe;
     --accent-bg: #f5f7ff;
     --text: #212121;
     --text-light: #585858;

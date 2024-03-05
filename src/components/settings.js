@@ -33,11 +33,14 @@ export function settings() {
                 if (element.max && value > element.max) {
                     element._x_model.set(+element.max);
                 }
+                if (value % 1 !== 0) {
+                    element._x_model.set(Math.floor(value));
+                }
             },
             toggleTimer() {
                 if (this.timer) {
                     this.stopTimer();
-                } else if (this.timeout !== 0) {
+                } else if (this.timeout > 0) {
                     this.minutesLeft = this.timeout;
                     this.timer = setInterval(() => this.tick(), 60 * 1000);
                 }

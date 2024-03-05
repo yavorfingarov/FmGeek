@@ -12,6 +12,8 @@ A minimalist and customizable progressive web application for listening to onlin
 
 -   Sleep timer
 
+-   HLS support
+
 ## Tech stack
 
 -   Alpine.js

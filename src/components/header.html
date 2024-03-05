@@ -1,6 +1,6 @@
 <header class="flex space-between center-align" x-data="header">
     <div>FmGeek</div>
-    <button class="flat padding no-margin no-hover-effect" @click="toggle()">
+    <button class="flat no-padding no-margin no-hover-effect" @click="toggle()">
         <img class="smaller" x-show="$store.navigation.player" src="icons/menu.svg" alt="Menu" />
         <img class="smaller" x-show="!$store.navigation.player" src="icons/cross.svg" alt="Close" />
     </button>

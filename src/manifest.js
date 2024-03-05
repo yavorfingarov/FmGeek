@@ -5,6 +5,7 @@ export const manifest = {
     start_url: "/",
     display: "standalone",
     theme_color: "#212121",
+    background_color: "#0d47a1",
     icons: [
         {
             src: "pwa-64x64.png",
