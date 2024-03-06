@@ -7,10 +7,9 @@ export default defineConfig({
     preset: {
         ...minimal2023Preset,
         maskable: {
-            ...minimal2023Preset.maskable,
+            sizes: [512],
             padding: 0,
             resizeOptions: {
-                ...minimal2023Preset.maskable.resizeOptions,
                 background: {r: 0, g: 0, b: 0, alpha: 0}
             }
         }
