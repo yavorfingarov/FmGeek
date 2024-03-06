@@ -45,12 +45,14 @@ select {
 
 button.flat {
     color: var(--accent);
-    font-family: inherit;
-    font-size: 1em;
     background-color: inherit;
     border: none;
+    &:hover {
+        background-color: inherit;
+        color: var(--accent-hover);
+    }
     &.no-hover-effect:hover {
-        filter: none;
+        color: var(--accent);
     }
 }
 
@@ -99,7 +101,7 @@ textarea {
 }
 
 .no-padding {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .margin {
@@ -132,14 +134,17 @@ textarea {
     text-decoration: none;
 }
 
-body.light,
-body.auto {
+html.light,
+html.auto {
+    color-scheme: light;
     --bg: #fefefe;
     --accent-bg: #f5f7ff;
     --text: #212121;
     --text-light: #585858;
     --border: #898ea4;
     --accent: #0d47a1;
+    --accent-hover: #1266e2;
+    --accent-text: var(--bg);
     --code: #d81b60;
     --preformatted: #444;
     --marked: #ffdd33;
@@ -157,6 +162,7 @@ body.auto {
     --text-light: #ababab;
     --accent: #ffb300;
     --accent-hover: #ffe099;
+    --accent-text: var(--bg);
     --code: #f06292;
     --preformatted: #ccc;
     --disabled: #111;
@@ -165,12 +171,12 @@ body.auto {
     }
 }
 
-body.dark {
+html.dark {
     @include dark();
 }
 
 @media (prefers-color-scheme: dark) {
-    body.auto {
+    html.auto {
         @include dark();
     }
 }

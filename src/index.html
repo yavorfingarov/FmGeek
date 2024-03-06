@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" x-data :class="$store.settings.ui.theme">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="./style.scss" />
         <script type="module" src="./main.js"></script>
     </head>
-    <body x-data :class="$store.settings.ui.theme">
+    <body>
         <noscript>
             <p class="center error">Please enable JavaScript to use this application.</p>
         </noscript>

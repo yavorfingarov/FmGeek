@@ -21,6 +21,7 @@ export default {
         VitePWA({
             registerType: "autoUpdate",
             workbox: {
+                globIgnores: ["**/{pwa,maskable}*.*"],
                 globPatterns: ["**/*.{js,css,html,ico,png,svg}"]
             },
             manifest
