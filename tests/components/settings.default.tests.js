@@ -14,13 +14,34 @@ test("historyLength", function () {
 });
 
 describe("defaultStations", function () {
+    const streams = defaultStations.flatMap((x) => x.stations.map((xx) => xx.stream));
+    const uniqueStreams = new Set(streams);
+    const websites = defaultStations.flatMap((x) => x.stations.map((xx) => xx.website));
+    const uniqueWebsites = new Set(websites);
+
     test("matches snapshot", function () {
         expect(defaultStations).toMatchSnapshot();
     });
 
     test("has no duplicate streams", function () {
-        const streams = defaultStations.flatMap((x) => x.stations.map((xx) => xx.stream));
-        const uniqueStreams = new Set(streams);
         expect(uniqueStreams.size).toBe(streams.length);
     });
+
+    test.each(Array.from(uniqueWebsites))(
+        "has valid website (%s)",
+        async function (website) {
+            const response = await fetch(website);
+            expect(response.ok).toBe(true);
+        },
+        10 * 1000
+    );
+
+    test.each(Array.from(streams).filter((x) => x !== "https://a2.vizitec.com:8001/classica.mp3"))(
+        "has valid stream (%s)",
+        async function (stream) {
+            const response = await fetch(stream);
+            expect(response.ok).toBe(true);
+        },
+        10 * 1000
+    );
 });

@@ -4,8 +4,20 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Listen to your favorite radio stations!" />
-        <meta name="keywords" content="radio, music, app, pwa" />
+        <meta name="keywords" content="radio, hls, music, minimalist, app, pwa" />
         <meta name="author" content="Yavor Fingarov" />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: light)"
+            x-data="{theme: $store.settings.ui.theme}"
+            :content="(theme === 'auto' || theme === 'light') ? '#fefefe' : '#212121'"
+        />
+        <meta
+            name="theme-color"
+            media="(prefers-color-scheme: dark)"
+            x-data="{theme: $store.settings.ui.theme}"
+            :content="(theme === 'auto' || theme === 'dark') ? '#212121' : '#fefefe'"
+        />
         <meta name="theme-color" content="#212121" />
         <title x-data x-text="$store.player.current?.name ?? 'FmGeek'"></title>
         <link rel="icon" href="./icons/favicon.ico" sizes="48x48" />

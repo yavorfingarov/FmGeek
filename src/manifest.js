@@ -4,7 +4,8 @@ export const manifest = {
     description: "Listen to your favorite radio stations!",
     start_url: "/",
     display: "standalone",
-    theme_color: "#212121",
+    theme_color: "#0d47a1",
+    background_color: "#0d47a1",
     icons: [
         {
             src: "pwa-64x64.png",

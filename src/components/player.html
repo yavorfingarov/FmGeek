@@ -1,14 +1,21 @@
 <section x-show="$store.navigation.player" x-data="player">
-    <a
-        class="no-decoration"
-        target="_blank"
-        rel="noopener norefferer nofollow"
-        :href="$store.player.current?.website ?? null"
-    >
-        <h1 class="center no-overflow" x-text="$store.player.current?.name"></h1>
-    </a>
+    <h1 class="center no-overflow">
+        <template x-if="$store.player.current?.website">
+            <a
+                class="no-decoration"
+                target="_blank"
+                rel="noopener norefferer nofollow"
+                x-text="$store.player.current.name"
+                :href="$store.player.current.website"
+            >
+            </a>
+        </template>
+        <template x-if="!$store.player.current?.website">
+            <span x-text="$store.player.current?.name"></span>
+        </template>
+    </h1>
     <div class="flex center">
-        <button class="flat padding no-margin no-hover-effect" @click="togglePlay()">
+        <button class="flat no-padding no-margin no-hover-effect" @click="togglePlay()">
             <img x-show="status.stopped" src="icons/play.svg" alt="Play" />
             <img x-show="status.loading" src="icons/dots.svg" alt="Loading" />
             <img x-show="status.playing" src="icons/stop.svg" alt="Stop" />
