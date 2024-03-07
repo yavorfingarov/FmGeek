@@ -27,8 +27,8 @@
         @playing="onPlaying()"
         @stalled="onLoading()"
         @error="onError()"
-        @pause="pause()"
-        @timer-stop.window="pause()"
+        @pause="stop()"
+        @timer-stop.window="stop()"
     ></audio>
     <p class="center smaller error" x-text="error"></p>
     <div class="flex center wrap smaller margin">

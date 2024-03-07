@@ -1,5 +1,7 @@
 export const playbackErrorMessage = "Could not play this station.";
 
+export const hlsNotSupportedErrorMessage = "HLS is not supprted by this browser.";
+
 export const saveConfirmMessage =
     "This action is irreversible and might lead to data loss. Please make sure you have a backup of your data. Continue?";
 
