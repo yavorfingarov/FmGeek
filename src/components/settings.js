@@ -27,13 +27,11 @@ export function settings() {
             minutesLeft: null,
             checkInput(element) {
                 const value = element._x_model.get();
-                if (element.min && value < element.min) {
-                    element._x_model.set(+element.min);
-                }
-                if (element.max && value > element.max) {
-                    element._x_model.set(+element.max);
-                }
-                if (value % 1 !== 0) {
+                if (element.min && (!value || value < element.min)) {
+                    element._x_model.set(Number(element.min));
+                } else if (element.max && value > element.max) {
+                    element._x_model.set(Number(element.max));
+                } else if (value % 1 !== 0) {
                     element._x_model.set(Math.floor(value));
                 }
             },
@@ -83,6 +81,7 @@ export function settings() {
             reset() {
                 if (confirm(resetConfirmMessage)) {
                     localStorage.clear();
+                    history.scrollRestoration = "manual";
                     location.reload();
                 }
             }

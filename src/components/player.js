@@ -1,7 +1,7 @@
 import Alpine from "alpinejs";
 import {Switch} from "./common/switch";
 import {updateHistory} from "./player.history";
-import {playbackErrorMessage} from "./common/messages";
+import {playbackErrorMessage, hlsNotSupportedErrorMessage} from "./common/messages";
 import {getStationDisplayName} from "./common/helpers";
 import Hls from "hls.js";
 
@@ -40,21 +40,25 @@ export function player() {
             },
             togglePlay() {
                 if (this.status.playing) {
-                    this.pause();
+                    this.stop();
                 } else if (this.$store.player.current?.stream) {
                     this.play();
                 }
             },
             play() {
-                this.pause();
+                this.stop();
+                this.error = null;
+                let ready;
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
-                    this.loadHls();
+                    ready = this.loadHls();
                 } else {
-                    this.load();
+                    ready = this.load();
                 }
-                this.$refs.player.play().catch(() => {});
+                if (ready) {
+                    this.$refs.player.play().catch(() => {});
+                }
             },
-            pause() {
+            stop() {
                 this.$refs.player.pause();
                 if (this.hls) {
                     this.hls.destroy();
@@ -65,11 +69,15 @@ export function player() {
             load() {
                 this.$refs.player.src = this.$store.player.current.stream;
                 this.$refs.player.load();
+                return true;
             },
             loadHls() {
-                if (this.$refs.player.canPlayType("application/vnd.apple.mpegurl") || !Hls.isSupported()) {
-                    this.load();
-                    return;
+                if (this.$refs.player.canPlayType("application/vnd.apple.mpegurl")) {
+                    return this.load();
+                }
+                if (!Hls.isSupported()) {
+                    this.error = hlsNotSupportedErrorMessage;
+                    return false;
                 }
                 this.hls = new Hls();
                 this.hls.on(Hls.Events.ERROR, (_, error) => {
@@ -81,13 +89,13 @@ export function player() {
                 });
                 this.hls.loadSource(this.$store.player.current.stream);
                 this.hls.attachMedia(this.$refs.player);
+                return true;
             },
             onLoading() {
                 this.status.set("loading");
             },
             onPlaying() {
                 this.status.set("playing");
-                this.error = null;
             },
             onError() {
                 this.status.set("stopped");
