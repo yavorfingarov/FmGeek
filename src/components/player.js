@@ -83,8 +83,6 @@ export function player() {
                 this.hls.on(Hls.Events.ERROR, (_, error) => {
                     if (error.fatal) {
                         this.onError();
-                    } else {
-                        this.onLoading();
                     }
                 });
                 this.hls.loadSource(this.$store.player.current.stream);
@@ -98,7 +96,7 @@ export function player() {
                 this.status.set("playing");
             },
             onError() {
-                this.status.set("stopped");
+                this.stop();
                 this.error = playbackErrorMessage;
             }
         };
