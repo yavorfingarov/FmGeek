@@ -26,9 +26,10 @@ export function player() {
                 this.recent = this.history.slice(0, this.$store.settings.ui.recentCount);
             },
             selectStation(station, groupName) {
-                if (groupName) {
-                    station = {...station, name: getStationDisplayName(groupName, station.name)};
-                }
+                station = {
+                    ...station,
+                    name: getStationDisplayName(groupName, station.name)
+                };
                 this.history = updateHistory(
                     this.history,
                     this.$store.settings.historyLength,

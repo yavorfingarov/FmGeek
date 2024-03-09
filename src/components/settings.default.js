@@ -321,11 +321,6 @@ export const defaultStations = [
                 website: "https://www.wbgo.org/"
             },
             {
-                name: "WBGO The Jazz Bee",
-                stream: "https://wbgo.streamguys1.com/thejazzstream",
-                website: "https://www.wbgo.org/"
-            },
-            {
                 name: "Jazz 88 San Diego",
                 stream: "https://ksds-ice.streamguys1.com/ksds.mp3",
                 website: "https://www.jazz88.org/"
