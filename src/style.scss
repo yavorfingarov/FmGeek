@@ -47,10 +47,13 @@ html.dark {
     }
 }
 
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
-    padding-left: calc(100vw - 100%);
 }
 
 main {
