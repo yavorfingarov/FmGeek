@@ -8,7 +8,7 @@ on:
 
 env:
   NODE_VERSION: 20
-  CLOUDFLARE_PROJECT_NAME: fmgeek
+  SURGE_DOMAIN: https://fmgeek.surge.sh
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
           cache: npm
 
       - name: Install packages
-        run: npm install
+        run: npm ci
 
       - name: Check style
         run: npm run style:check
@@ -42,12 +42,8 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ${{ env.CLOUDFLARE_PROJECT_NAME }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.event_name == 'push' && 'main' || 'test' }}
-          directory: ./dist
+      - name: Deploy to Surge
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          npm install --global surge
+          surge ./dist/ --domain ${{ env.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
