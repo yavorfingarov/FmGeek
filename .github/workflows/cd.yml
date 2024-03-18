@@ -28,7 +28,7 @@ jobs:
           cache: npm
 
       - name: Install packages
-        run: npm install
+        run: npm ci
 
       - name: Check style
         run: npm run style:check
