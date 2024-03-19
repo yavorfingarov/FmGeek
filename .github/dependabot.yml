@@ -3,12 +3,18 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
     assignees:
       - yavorfingarov
+
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
     assignees:
       - yavorfingarov
+    groups:
+      prod:
+        dependency-type: production
+      dev:
+        dependency-type: development
