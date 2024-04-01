@@ -26,10 +26,10 @@
         "eslint-plugin-promise": "^6.1.1",
         "prettier": "3.2.5",
         "sass": "^1.72.0",
-        "vite": "^5.1.6",
+        "vite": "^5.2.7",
         "vite-plugin-handlebars": "^2.0.0",
         "vite-plugin-live-reload": "^3.0.3",
-        "vite-plugin-pwa": "^0.19.5",
+        "vite-plugin-pwa": "^0.19.7",
         "vitest": "^1.4.0"
     },
     "dependencies": {
