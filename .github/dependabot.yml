@@ -14,7 +14,8 @@ updates:
     assignees:
       - yavorfingarov
     ignore:
-      - dependency-type: development
+      - dependency-name: "*"
+        dependency-type: development
     groups:
       prod:
         dependency-type: production
