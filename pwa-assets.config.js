@@ -1,4 +1,5 @@
 import {defineConfig, minimal2023Preset} from "@vite-pwa/assets-generator/config";
+import {manifest} from "./src/manifest";
 
 export default defineConfig({
     headLinkOptions: {
@@ -10,7 +11,7 @@ export default defineConfig({
             sizes: [512],
             padding: 0,
             resizeOptions: {
-                background: {r: 0, g: 0, b: 0, alpha: 0}
+                background: manifest.background_color
             }
         }
     },

@@ -7,20 +7,20 @@ A minimalist and customizable progressive web application for listening to onlin
 
 ## Features
 
--   Exquisite default station selection
+- Exquisite default station selection
 
--   Customizable station list
+- Customizable station list
 
--   Recent station history
+- Recent station history
 
--   Light and dark themes
+- Light and dark themes
 
--   Sleep timer
+- Sleep timer
 
--   HLS support
+- HLS support
 
 ## Tech stack
 
--   Alpine.js
+- Alpine.js
 
--   Simple.css
+- Simple.css
