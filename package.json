@@ -18,7 +18,7 @@
     "devDependencies": {
         "@vite-pwa/assets-generator": "^0.2.4",
         "@vitest/coverage-v8": "^1.5.3",
-        "eslint": "^8.57.0",
+        "eslint": "^9.1.1",
         "eslint-config-prettier": "^9.1.0",
         "eslint-config-standard": "^17.1.0",
         "eslint-plugin-import": "^2.29.1",
