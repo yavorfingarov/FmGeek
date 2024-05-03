@@ -13,6 +13,8 @@ updates:
       interval: weekly
     assignees:
       - yavorfingarov
+    ignore:
+      - dependency-type: development
     groups:
       prod:
         dependency-type: production

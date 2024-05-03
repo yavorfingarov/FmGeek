@@ -22,7 +22,13 @@ export default {
             registerType: "autoUpdate",
             workbox: {
                 globIgnores: ["**/{pwa,maskable}*.*"],
-                globPatterns: ["**/*.{js,css,html,ico,png,svg}"]
+                globPatterns: ["**/*.{js,css,ico,png,svg}"],
+                additionalManifestEntries: [
+                    {
+                        url: "index.html",
+                        revision: Date.now().toString()
+                    }
+                ]
             },
             manifest
         }),
