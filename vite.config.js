@@ -16,7 +16,7 @@ export default {
     },
     plugins: [
         handlebars({
-            partialDirectory: resolve(__dirname, "./src/components")
+            partialDirectory: resolve("./src/components")
         }),
         VitePWA({
             registerType: "autoUpdate",

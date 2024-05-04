@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshot 1`] = `
+{
+  "background_color": "#0d47a1",
+  "description": "Listen to your favorite radio stations!",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "64x64",
+      "src": "pwa-64x64.png",
+      "type": "image/png",
+    },
+    {
+      "sizes": "192x192",
+      "src": "pwa-192x192.png",
+      "type": "image/png",
+    },
+    {
+      "purpose": "any",
+      "sizes": "512x512",
+      "src": "pwa-512x512.png",
+      "type": "image/png",
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "maskable-icon-512x512.png",
+      "type": "image/png",
+    },
+  ],
+  "name": "FmGeek",
+  "short_name": "FmGeek",
+  "start_url": "/",
+  "theme_color": "#0d47a1",
+}
+`;
