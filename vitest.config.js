@@ -4,11 +4,11 @@ import {defineConfig} from "vite";
 
 export default defineConfig({
     test: {
-        root: "./",
+        root: "./src",
         dir: "./tests",
         include: "**/*.tests.js",
         coverage: {
-            reportsDirectory: "./tests/.coverage"
+            reportsDirectory: "../tests/.coverage"
         }
     }
 });
