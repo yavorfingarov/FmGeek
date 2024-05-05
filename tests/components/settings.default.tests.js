@@ -1,4 +1,5 @@
 import {describe, expect, test} from "vitest";
+import process from "node:process";
 import {defaultUiSettings, historyLength, defaultStations, defaultTimeout} from "../../src/components/settings.default";
 
 test("defaultTimeout", function () {
@@ -27,9 +28,7 @@ describe("defaultStations", function () {
         expect(uniqueStreams.size).toBe(streams.length);
     });
 
-    // TODO Update tests
-
-    test.skip.each(Array.from(uniqueWebsites))(
+    test.each(Array.from(uniqueWebsites))(
         "has valid website (%s)",
         async function (website) {
             const response = await fetch(website);
@@ -38,9 +37,14 @@ describe("defaultStations", function () {
         10 * 1000
     );
 
-    test.skip.each(Array.from(streams).filter((x) => x !== "https://a2.vizitec.com:8001/classica.mp3"))(
+    test.each(Array.from(streams))(
         "has valid stream (%s)",
         async function (stream) {
+            if (stream === "https://a2.vizitec.com:8001/classica.mp3") {
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+            } else if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === 0) {
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = 1;
+            }
             const response = await fetch(stream);
             expect(response.ok).toBe(true);
         },
