@@ -1,0 +1,33 @@
+name: Monitor
+
+on:
+  schedule:
+    - cron: 30 9 * * 1
+
+env:
+  NODE_VERSION: 20
+
+jobs:
+  test-stations:
+    name: Test stations
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Test stations
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          retry_wait_seconds: 600
+          command: npm run test:stations
