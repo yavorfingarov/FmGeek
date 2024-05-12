@@ -17,7 +17,6 @@ exports[`snapshot 1`] = `
       "type": "image/png",
     },
     {
-      "purpose": "any",
       "sizes": "512x512",
       "src": "pwa-512x512.png",
       "type": "image/png",
