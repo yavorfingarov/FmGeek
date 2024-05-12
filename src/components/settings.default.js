@@ -291,6 +291,11 @@ export const defaultStations = [
                 website: "https://www1.wdr.de/radio/wdr3/index.html"
             },
             {
+                name: "PR Niezły Jazz",
+                stream: "https://stream85.polskieradio.pl/omniaaxe/k103.stream/playlist.m3u8",
+                website: "https://moje.polskieradio.pl/#/115?gsid=106"
+            },
+            {
                 name: "CRo Jazz",
                 stream: "https://rozhlas.stream/jazz_high.aac",
                 website: "https://jazz.rozhlas.cz/"
