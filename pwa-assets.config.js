@@ -9,7 +9,6 @@ export default defineConfig({
         ...minimal2023Preset,
         maskable: {
             sizes: [512],
-            padding: 0,
             resizeOptions: {
                 background: manifest.background_color
             }
