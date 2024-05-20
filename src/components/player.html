@@ -23,9 +23,9 @@
     </div>
     <audio
         x-ref="player"
-        @play="onLoading()"
+        @play="onPlay()"
         @playing="onPlaying()"
-        @stalled="onLoading()"
+        @stalled="onStalled()"
         @error="onError()"
         @pause="stop()"
         @timer-stop.window="stop()"
