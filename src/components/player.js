@@ -21,6 +21,7 @@ export function player() {
             history: this.$persist([]),
             recent: [],
             status: new Switch("set", "stopped"),
+            retryTimer: null,
             error: null,
             updateRecent() {
                 this.recent = this.history.slice(0, this.$store.settings.ui.recentCount);
@@ -37,18 +38,22 @@ export function player() {
                     this.$store.player.current
                 );
                 this.$store.player.current = station;
+                this.stopRetryTimer();
                 this.play();
             },
             togglePlay() {
+                this.stopRetryTimer();
                 if (this.status.playing) {
                     this.stop();
-                } else if (this.$store.player.current?.stream) {
+                } else {
                     this.play();
                 }
             },
             play() {
+                if (!this.$store.player.current?.stream) {
+                    return;
+                }
                 this.stop();
-                this.error = null;
                 let ready;
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
                     ready = this.loadHls();
@@ -65,7 +70,9 @@ export function player() {
                     this.hls.destroy();
                     this.hls = null;
                 }
-                this.status.set("stopped");
+                if (!this.retryTimer) {
+                    this.status.set("stopped");
+                }
             },
             load() {
                 this.$refs.player.src = this.$store.player.current.stream;
@@ -73,32 +80,49 @@ export function player() {
                 return true;
             },
             loadHls() {
-                if (this.$refs.player.canPlayType("application/vnd.apple.mpegurl")) {
-                    return this.load();
-                }
                 if (!Hls.isSupported()) {
                     this.error = hlsNotSupportedErrorMessage;
                     return false;
                 }
                 this.hls = new Hls();
                 this.hls.on(Hls.Events.ERROR, (_, error) => {
-                    if (error.fatal) {
-                        this.onError();
+                    if (error.fatal && !this.retryTimer) {
+                        if (this.status.playing && error.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                            this.onStalled();
+                        } else {
+                            this.onError();
+                        }
                     }
                 });
                 this.hls.loadSource(this.$store.player.current.stream);
                 this.hls.attachMedia(this.$refs.player);
                 return true;
             },
-            onLoading() {
+            stopRetryTimer() {
+                if (this.retryTimer) {
+                    clearInterval(this.retryTimer);
+                    this.retryTimer = null;
+                }
+            },
+            onPlay() {
                 this.status.set("loading");
             },
             onPlaying() {
                 this.status.set("playing");
+                this.stopRetryTimer();
+                this.error = null;
+            },
+            onStalled() {
+                this.status.set("loading");
+                if (!this.retryTimer) {
+                    this.retryTimer = setInterval(() => this.play(), 10000);
+                }
             },
             onError() {
                 this.stop();
-                this.error = playbackErrorMessage;
+                if (!this.retryTimer) {
+                    this.error = playbackErrorMessage;
+                }
             }
         };
     });
