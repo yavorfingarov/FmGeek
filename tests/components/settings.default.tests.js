@@ -1,6 +1,6 @@
 import {describe, expect, test} from "vitest";
 import process from "node:process";
-import {defaultUiSettings, historyLength, defaultStations, defaultTimeout} from "../../src/components/settings.default";
+import {defaultTimeout, defaultUiSettings, historyLength, defaultStations} from "../../src/components/settings.default";
 
 test("defaultTimeout", function () {
     expect(defaultTimeout).toBe(120);

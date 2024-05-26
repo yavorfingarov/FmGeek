@@ -1,9 +1,12 @@
 import Alpine from "alpinejs";
+import Hls from "hls.js";
 import {Switch} from "./common/switch";
 import {updateHistory} from "./player.history";
 import {playbackErrorMessage, hlsNotSupportedErrorMessage} from "./common/messages";
 import {getStationDisplayName} from "./common/helpers";
-import Hls from "hls.js";
+
+const retryTimeout = 10000;
+const togglePlayTimeout = 5000;
 
 export function player() {
     Alpine.store("player", {
@@ -21,6 +24,7 @@ export function player() {
             history: this.$persist([]),
             recent: [],
             status: new Switch("set", "stopped"),
+            togglePlayEnabled: true,
             retryTimer: null,
             error: null,
             updateRecent() {
@@ -45,8 +49,10 @@ export function player() {
                 this.stopRetryTimer();
                 if (this.status.playing) {
                     this.stop();
-                } else {
+                } else if (this.togglePlayEnabled) {
                     this.play();
+                    this.togglePlayEnabled = false;
+                    setTimeout(() => (this.togglePlayEnabled = true), togglePlayTimeout);
                 }
             },
             play() {
@@ -85,15 +91,7 @@ export function player() {
                     return false;
                 }
                 this.hls = new Hls();
-                this.hls.on(Hls.Events.ERROR, (_, error) => {
-                    if (error.fatal && !this.retryTimer) {
-                        if (this.status.playing && error.type === Hls.ErrorTypes.NETWORK_ERROR) {
-                            this.onStalled();
-                        } else {
-                            this.onError();
-                        }
-                    }
-                });
+                this.hls.on(Hls.Events.ERROR, (_, error) => this.onHlsError(error));
                 this.hls.loadSource(this.$store.player.current.stream);
                 this.hls.attachMedia(this.$refs.player);
                 return true;
@@ -115,13 +113,24 @@ export function player() {
             onStalled() {
                 this.status.set("loading");
                 if (!this.retryTimer) {
-                    this.retryTimer = setInterval(() => this.play(), 10000);
+                    this.retryTimer = setInterval(() => this.play(), retryTimeout);
                 }
             },
             onError() {
                 this.stop();
+                this.togglePlayEnabled = true;
                 if (!this.retryTimer) {
                     this.error = playbackErrorMessage;
+                }
+            },
+            onHlsError(error) {
+                if (!error.fatal || this.retryTimer) {
+                    return;
+                }
+                if (this.status.playing && error.type === Hls.ErrorTypes.NETWORK_ERROR) {
+                    this.onStalled();
+                } else {
+                    this.onError();
                 }
             }
         };

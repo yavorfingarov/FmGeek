@@ -32,9 +32,9 @@
         "vitest": "^1.6.0"
     },
     "dependencies": {
-        "@alpinejs/persist": "^3.13.10",
-        "alpinejs": "^3.13.10",
+        "@alpinejs/persist": "^3.14.0",
+        "alpinejs": "^3.14.0",
         "hls.js": "^1.5.8",
-        "simpledotcss": "^2.3.0"
+        "simpledotcss": "^2.3.1"
     }
 }
