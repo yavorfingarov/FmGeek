@@ -245,6 +245,11 @@ export const defaultStations = [
                 website: "https://www.radiofrance.fr/francemusique"
             },
             {
+                name: "Piano Zen",
+                stream: "https://icecast.radiofrance.fr/francemusiquepianozen-hifi.aac",
+                website: "https://www.radiofrance.fr/francemusique"
+            },
+            {
                 name: "Jazz",
                 stream: "https://icecast.radiofrance.fr/francemusiquelajazz-hifi.aac",
                 website: "https://www.radiofrance.fr/francemusique"
