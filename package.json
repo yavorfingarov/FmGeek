@@ -34,7 +34,7 @@
     "dependencies": {
         "@alpinejs/persist": "^3.14.0",
         "alpinejs": "^3.14.0",
-        "hls.js": "^1.5.9",
+        "hls.js": "^1.5.11",
         "simpledotcss": "^2.3.1"
     }
 }
