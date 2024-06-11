@@ -75,6 +75,7 @@
                 </dl>
             </details>
             <button @click.prevent="copy()">Copy</button>
+            <button @click.prevent="loadDefault()">Load default</button>
             <button :disabled="!jsonDirty" @click.prevent="discardChanges()">Discard changes</button>
             <button :disabled="!jsonDirty" @click.prevent="save()">Save</button>
             <p class="error" x-show="error" x-text="error"></p>

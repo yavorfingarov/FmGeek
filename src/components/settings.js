@@ -18,13 +18,16 @@ export function settings() {
     Alpine.data("settings", function () {
         return {
             init() {
-                this.json = JSON.stringify(this.$store.settings.stations, null, 2);
-                this.jsonDirty = false;
-                this.error = null;
+                this.load(this.$store.settings.stations, false);
             },
             timeout: this.$persist(defaultTimeout),
             timer: null,
             minutesLeft: null,
+            load(stations, jsonDirty) {
+                this.json = JSON.stringify(stations, null, 2);
+                this.jsonDirty = jsonDirty;
+                this.error = null;
+            },
             checkInput(element) {
                 const value = element._x_model.get();
                 if (element.min && (!value || value < element.min)) {
@@ -77,6 +80,9 @@ export function settings() {
                 if (confirm(discardChangesConfirmMessage)) {
                     this.init();
                 }
+            },
+            loadDefault() {
+                this.load(defaultStations, true);
             },
             reset() {
                 if (confirm(resetConfirmMessage)) {

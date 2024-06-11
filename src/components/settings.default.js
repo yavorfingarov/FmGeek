@@ -431,6 +431,11 @@ export const defaultStations = [
                 name: "WMR",
                 stream: "https://stream.probroadcast.dk/wmr",
                 website: "https://wmr.dk"
+            },
+            {
+                name: "tilderadio",
+                stream: "https://azuracast.tilderadio.org/radio/8000/320k.ogg",
+                website: "https://tilderadio.org/"
             }
         ]
     }
