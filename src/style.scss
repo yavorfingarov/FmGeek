@@ -184,6 +184,21 @@ textarea {
     text-decoration: none;
 }
 
+.pop {
+    animation: pop 250ms ease-out;
+}
+
+.pulse {
+    animation: pop 500ms ease-out infinite alternate;
+}
+
+@keyframes pop {
+    from {
+        opacity: 0.8;
+        transform: scale(0.8);
+    }
+}
+
 [x-cloak] {
     display: none !important;
 }
