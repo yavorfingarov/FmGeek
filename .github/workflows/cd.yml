@@ -8,7 +8,8 @@ on:
 
 env:
   NODE_VERSION: 20
-  SURGE_DOMAIN: https://fmgeek.surge.sh
+  CLOUDFLARE_PROJECT: fmgeek
+  CLOUDFLARE_BRANCH: ${{ github.event_name == 'push' && 'main' || 'test' }}
 
 jobs:
   build:
@@ -39,8 +40,9 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Deploy to Surge
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          npm install --global surge
-          surge ./dist/ --domain ${{ env.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist/ --project-name=${{ env.CLOUDFLARE_PROJECT }} --branch=${{ env.CLOUDFLARE_BRANCH }}
