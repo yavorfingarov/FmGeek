@@ -1,5 +1,4 @@
 import Alpine from "alpinejs";
-import Hls from "hls.js";
 import {Switch} from "./common/switch";
 import {updateHistory} from "./player.history";
 import {playbackErrorMessage, hlsNotSupportedErrorMessage} from "./common/messages";
@@ -7,6 +6,8 @@ import {getStationDisplayName} from "./common/helpers";
 
 const retryTimeout = 10000;
 const togglePlayTimeout = 5000;
+
+let Hls = null;
 
 export function player() {
     Alpine.store("player", {
@@ -60,15 +61,9 @@ export function player() {
                     return;
                 }
                 this.stop();
-                let ready;
-                if (this.$store.player.current.stream.endsWith(".m3u8")) {
-                    ready = this.loadHls();
-                } else {
-                    ready = this.load();
-                }
-                if (ready) {
-                    this.$refs.player.play().catch(() => {});
-                }
+                this.load()
+                    .then(() => this.$refs.player.play().catch(() => {}))
+                    .catch((error) => (this.error = error.message));
             },
             stop() {
                 this.$refs.player.pause();
@@ -80,21 +75,30 @@ export function player() {
                     this.status.set("stopped");
                 }
             },
-            load() {
-                this.$refs.player.src = this.$store.player.current.stream;
-                this.$refs.player.load();
-                return true;
-            },
-            loadHls() {
-                if (!Hls.isSupported()) {
-                    this.error = hlsNotSupportedErrorMessage;
-                    return false;
+            async load() {
+                if (this.$store.player.current.stream.endsWith(".m3u8")) {
+                    await this.importHls();
+                    this.hls = new Hls();
+                    this.hls.on(Hls.Events.ERROR, (_, error) => this.onHlsError(error));
+                    this.hls.loadSource(this.$store.player.current.stream);
+                    this.hls.attachMedia(this.$refs.player);
+                } else {
+                    this.$refs.player.src = this.$store.player.current.stream;
+                    this.$refs.player.load();
                 }
-                this.hls = new Hls();
-                this.hls.on(Hls.Events.ERROR, (_, error) => this.onHlsError(error));
-                this.hls.loadSource(this.$store.player.current.stream);
-                this.hls.attachMedia(this.$refs.player);
-                return true;
+            },
+            async importHls() {
+                try {
+                    if (!Hls) {
+                        const hlsModule = await import("hls.js");
+                        Hls = hlsModule.Hls;
+                    }
+                } catch {
+                    throw Error(playbackErrorMessage);
+                }
+                if (!Hls.isSupported()) {
+                    throw Error(hlsNotSupportedErrorMessage);
+                }
             },
             stopRetryTimer() {
                 if (this.retryTimer) {
@@ -109,6 +113,7 @@ export function player() {
                 this.status.set("playing");
                 this.stopRetryTimer();
                 this.error = null;
+                this.togglePlayEnabled = true;
             },
             onStalled() {
                 this.status.set("loading");
