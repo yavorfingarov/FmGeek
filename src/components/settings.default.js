@@ -222,57 +222,57 @@ export const defaultStations = [
             {
                 name: "Baroque",
                 stream: "https://icecast.radiofrance.fr/francemusiquebaroque-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-baroque"
             },
             {
                 name: "Classique",
                 stream: "https://icecast.radiofrance.fr/francemusiqueclassiqueplus-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-classique-plus"
             },
             {
                 name: "Opéra",
                 stream: "https://icecast.radiofrance.fr/francemusiqueopera-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-opera"
             },
             {
                 name: "Concerts",
                 stream: "https://icecast.radiofrance.fr/francemusiqueconcertsradiofrance-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-concerts"
             },
             {
                 name: "Contemporaine",
                 stream: "https://icecast.radiofrance.fr/francemusiquelacontemporaine-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-contemporaine"
             },
             {
                 name: "Piano Zen",
                 stream: "https://icecast.radiofrance.fr/francemusiquepianozen-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-piano-zen"
             },
             {
                 name: "Jazz",
                 stream: "https://icecast.radiofrance.fr/francemusiquelajazz-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-jazz"
             },
             {
                 name: "Films",
                 stream: "https://icecast.radiofrance.fr/francemusiquelabo-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-musiques-films"
             },
             {
                 name: "Ocora Monde",
                 stream: "https://icecast.radiofrance.fr/francemusiqueocoramonde-hifi.aac",
-                website: "https://www.radiofrance.fr/francemusique"
+                website: "https://www.radiofrance.fr/francemusique/radio-ocora"
             },
             {
                 name: "Chanson",
                 stream: "https://icecast.radiofrance.fr/fipsacrefrancais-hifi.aac",
-                website: "https://www.radiofrance.fr/fip"
+                website: "https://www.radiofrance.fr/fip/radio-sacre-francais"
             },
             {
                 name: "Monde",
                 stream: "https://icecast.radiofrance.fr/fipworld-hifi.aac",
-                website: "https://www.radiofrance.fr/fip"
+                website: "https://www.radiofrance.fr/fip/radio-monde"
             }
         ]
     },
