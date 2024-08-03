@@ -41,6 +41,7 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           uploadArtifacts: true
+          runs: 5
           urls: |
             https://fmgeek.pages.dev/
 
