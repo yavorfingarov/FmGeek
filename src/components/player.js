@@ -27,6 +27,7 @@ export function player() {
             status: new Switch("set", "stopped"),
             togglePlayEnabled: true,
             retryTimer: null,
+            overridePlayEvent: true,
             error: null,
             updateRecent() {
                 this.recent = this.history.slice(0, this.$store.settings.ui.recentCount);
@@ -62,15 +63,16 @@ export function player() {
                 }
                 this.stop();
                 this.load()
-                    .then(() => this.$refs.player.play().catch(() => {}))
-                    .catch((error) => (this.error = error.message));
+                    .then(() => {
+                        this.overridePlayEvent = false;
+                        this.$refs.player.play().catch(() => {});
+                    })
+                    .catch((error) => {
+                        this.error = error.message;
+                    });
             },
             stop() {
                 this.$refs.player.pause();
-                if (this.hls) {
-                    this.hls.destroy();
-                    this.hls = null;
-                }
                 if (!this.retryTimer) {
                     this.status.set("stopped");
                 }
@@ -78,6 +80,9 @@ export function player() {
             async load() {
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
                     await this.importHls();
+                    if (this.hls) {
+                        this.hls.destroy();
+                    }
                     this.hls = new Hls();
                     this.hls.on(Hls.Events.ERROR, (_, error) => this.onHlsError(error));
                     this.hls.loadSource(this.$store.player.current.stream);
@@ -108,6 +113,10 @@ export function player() {
             },
             onPlay() {
                 this.status.set("loading");
+                if (this.overridePlayEvent) {
+                    this.play();
+                }
+                this.overridePlayEvent = true;
             },
             onPlaying() {
                 this.status.set("playing");
