@@ -78,11 +78,11 @@ export function player() {
                 }
             },
             async load() {
+                if (this.hls) {
+                    this.hls.destroy();
+                }
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
                     await this.importHls();
-                    if (this.hls) {
-                        this.hls.destroy();
-                    }
                     this.hls = new Hls();
                     this.hls.on(Hls.Events.ERROR, (_, error) => this.onHlsError(error));
                     this.hls.loadSource(this.$store.player.current.stream);
