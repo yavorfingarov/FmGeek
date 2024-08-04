@@ -34,16 +34,11 @@ jobs:
       - name: Lint
         run: npm run lint:check
 
+      - name: Test
+        run: npm run test
+
       - name: Build
         run: npm run build
-
-      - name: Run Lighthouse audit
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          uploadArtifacts: true
-          runs: 5
-          urls: |
-            https://fmgeek.pages.dev/
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
