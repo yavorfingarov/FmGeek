@@ -31,19 +31,12 @@
             <p class="center error">Please enable JavaScript to use this application.</p>
         </noscript>
         <main x-data x-cloak>
-            <!---->
-            {{> header }}
-            <!---->
-            {{> navigation }}
-            <!---->
-            {{> settings }}
-            <!---->
-            {{> about }}
-            <!---->
-            {{> privacy }}
-            <!---->
-            {{> player }}
-            <!---->
+            <load src="./components/header.html" />
+            <load src="./components/navigation.html" />
+            <load src="./components/settings.html" />
+            <load src="./components/about.html" />
+            <load src="./components/privacy.html" />
+            <load src="./components/player.html" />
         </main>
     </body>
 </html>

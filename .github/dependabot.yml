@@ -4,15 +4,15 @@ updates:
     directory: /
     schedule:
       interval: weekly
-    assignees:
-      - yavorfingarov
+    groups:
+      main:
+        patterns:
+          - "*"
 
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: weekly
-    assignees:
-      - yavorfingarov
     allow:
       - dependency-name: "*"
         dependency-type: production
