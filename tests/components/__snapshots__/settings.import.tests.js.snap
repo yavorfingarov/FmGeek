@@ -4,7 +4,7 @@ exports[`parseStations > throws on invalid JSON (   ) 1`] = `[SyntaxError: Unexp
 
 exports[`parseStations > throws on invalid JSON () 1`] = `[SyntaxError: Unexpected end of JSON input]`;
 
-exports[`parseStations > throws on invalid JSON ({) 1`] = `[SyntaxError: Expected property name or '}' in JSON at position 1]`;
+exports[`parseStations > throws on invalid JSON ({) 1`] = `[SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)]`;
 
 exports[`parseStations > throws on invalid JSON (test) 1`] = `[SyntaxError: Unexpected token 'e', "test" is not valid JSON]`;
 

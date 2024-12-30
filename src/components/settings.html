@@ -16,7 +16,7 @@
             <label for="active-timer" x-show="timer">Minutes left</label>
             <input id="active-timer" type="number" disabled x-show="timer" :value="minutesLeft" />
             <br />
-            <button x-text="(timer) ? 'Stop' : 'Start'" @click.prevent="toggleTimer()"></button>
+            <button type="button" x-text="(timer) ? 'Stop' : 'Start'" @click="toggleTimer()"></button>
         </fieldset>
         <fieldset>
             <legend>User Interface</legend>
@@ -74,15 +74,15 @@
                     </dd>
                 </dl>
             </details>
-            <button @click.prevent="copy()">Copy</button>
-            <button @click.prevent="loadDefault()">Load default</button>
-            <button :disabled="!jsonDirty" @click.prevent="discardChanges()">Discard changes</button>
-            <button :disabled="!jsonDirty" @click.prevent="save()">Save</button>
+            <button type="button" @click="copy()">Copy</button>
+            <button type="button" @click="loadDefault()">Load default</button>
+            <button type="button" :disabled="!jsonDirty" @click="discardChanges()">Discard changes</button>
+            <button type="button" :disabled="!jsonDirty" @click="save()">Save</button>
             <p class="error" x-show="error" x-text="error"></p>
         </fieldset>
         <fieldset>
             <legend>Danger Zone</legend>
-            <button @click.prevent="reset()">Factory reset</button>
+            <button type="button" @click="reset()">Factory reset</button>
         </fieldset>
     </form>
 </section>

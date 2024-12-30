@@ -1,7 +1,5 @@
-import {resolve} from "path";
-import handlebars from "vite-plugin-handlebars";
 import {VitePWA} from "vite-plugin-pwa";
-import liveReload from "vite-plugin-live-reload";
+import injectHTML from "vite-plugin-html-inject";
 import {manifest} from "./src/manifest";
 
 /** @type {import('vite').UserConfig} */
@@ -15,9 +13,7 @@ export default {
         assetsDir: "./"
     },
     plugins: [
-        handlebars({
-            partialDirectory: resolve("./src/components")
-        }),
+        injectHTML(),
         VitePWA({
             registerType: "autoUpdate",
             workbox: {
@@ -31,7 +27,13 @@ export default {
                 ]
             },
             manifest
-        }),
-        liveReload(".", {alwaysReload: true})
-    ]
+        })
+    ],
+    test: {
+        dir: "./tests",
+        include: "**/*.tests.js",
+        coverage: {
+            reportsDirectory: "../tests/.coverage"
+        }
+    }
 };

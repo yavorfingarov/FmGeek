@@ -85,7 +85,7 @@ export const defaultStations = [
             {
                 name: "ABC Classic",
                 stream: "https://live-radio01.mediahubaustralia.com/2FMW/aac",
-                website: "https://www.abc.net.au/listen/classic"
+                website: "https://www.abc.net.au/listen/live/classic"
             },
             {
                 name: "ABC Classic 2",
@@ -313,7 +313,7 @@ export const defaultStations = [
             {
                 name: "ABC Jazz",
                 stream: "https://live-radio01.mediahubaustralia.com/JAZW/aac",
-                website: "https://www.abc.net.au/listen/jazz"
+                website: "https://www.abc.net.au/listen/live/jazz"
             },
             {
                 name: "Jazz24 Seattle",
