@@ -9,7 +9,7 @@
         "lint:fix": "eslint --fix .",
         "style:check": "prettier . --check",
         "style:fix": "prettier . --write",
-        "test": "vitest run --coverage",
+        "test": "vitest run",
         "test:update": "vitest run --update",
         "test:stations": "vitest run --testNamePattern https",
         "dev": "vite",
