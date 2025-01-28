@@ -7,6 +7,7 @@ on:
     branches: [master]
 
 env:
+  NODE_VERSION: 22
   CLOUDFLARE_PROJECT: fmgeek
   CLOUDFLARE_BRANCH: ${{ github.event_name == 'push' && 'main' || 'test' }}
 
@@ -21,9 +22,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
-          cache: npm
-          cache-dependency-path: ./package-lock.json
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install packages
         run: npm ci

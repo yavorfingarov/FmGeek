@@ -1,0 +1,22 @@
+name: PR updater
+
+on:
+  pull_request:
+    branches: [master]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  update:
+    name: Update
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Update pull request
+        run: gh pr edit ${{ github.event.pull_request.number }} --title "Updated dependencies" --add-assignee ${{ github.repository_owner }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
