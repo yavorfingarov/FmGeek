@@ -9,7 +9,7 @@ export default [
     pluginJs.configs.recommended,
     eslintConfigPrettier,
     {
-        ignores: ["dist/*", "tests/.coverage/*"]
+        ignores: ["output/*", "tests/.coverage/*"]
     },
     {
         rules: {
