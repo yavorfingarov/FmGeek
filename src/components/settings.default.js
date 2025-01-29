@@ -326,6 +326,11 @@ export const defaultStations = [
                 website: "https://www.wbgo.org/"
             },
             {
+                name: "WBGO The Jazz Bee",
+                stream: "https://wbgo.streamguys1.com/thejazzstream",
+                website: "https://www.wbgo.org/"
+            },
+            {
                 name: "Jazz 88 San Diego",
                 stream: "https://ksds-ice.streamguys1.com/ksds.mp3",
                 website: "https://www.jazz88.org/"
@@ -339,6 +344,11 @@ export const defaultStations = [
                 name: "KMHD Portland",
                 stream: "https://ais-sa3.cdnstream1.com/2442_128.aac",
                 website: "https://www.kmhd.org/"
+            },
+            {
+                name: "WWFM New Jersey JazzOn2",
+                stream: "https://ice8.securenetsystems.net/JAZZON2",
+                website: "https://www.wwfm.org/"
             }
         ]
     },

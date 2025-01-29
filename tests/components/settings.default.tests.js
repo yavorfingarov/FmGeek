@@ -15,6 +15,8 @@ test("historyLength", function () {
 });
 
 describe("defaultStations", function () {
+    const inactiveStations = [];
+    const inactiveStreams = inactiveStations.map((x) => x.stream);
     const streams = defaultStations.flatMap((x) => x.stations.map((xx) => xx.stream));
     const uniqueStreams = new Set(streams);
     const websites = defaultStations.flatMap((x) => x.stations.map((xx) => xx.website));
@@ -47,6 +49,15 @@ describe("defaultStations", function () {
             }
             const response = await fetch(stream);
             expect(response.ok).toBe(true);
+        },
+        10 * 1000
+    );
+
+    test.each(Array.from(inactiveStreams))(
+        "has still inactive stream (%s)",
+        async function (stream) {
+            const response = await fetch(stream);
+            expect(response.ok).toBe(false);
         },
         10 * 1000
     );
