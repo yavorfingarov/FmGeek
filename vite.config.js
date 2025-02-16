@@ -4,16 +4,6 @@ import {createHash} from "crypto";
 import {readFileSync} from "fs";
 import {manifest} from "./src/manifest";
 
-function transformManifestEntry(manifestEntry) {
-    if (!manifestEntry.url.match(/-[a-zA-Z0-9]{8}\./)) {
-        const hash = createHash("MD5");
-        const file = readFileSync(`output/${manifestEntry.url}`);
-        hash.update(file);
-        manifestEntry.revision = hash.digest("hex");
-    }
-    return manifestEntry;
-}
-
 /** @type {import('vite').UserConfig} */
 
 export default {
@@ -22,7 +12,15 @@ export default {
     build: {
         outDir: "../output",
         emptyOutDir: true,
-        assetsDir: "./"
+        assetsDir: "./",
+        rollupOptions: {
+            output: {
+                entryFileNames: "[name].[hash].js",
+                chunkFileNames: "[name].[hash].js",
+                assetFileNames: "[name].[hash][extname]",
+                hashCharacters: "base36"
+            }
+        }
     },
     plugins: [
         injectHTML(),
@@ -51,3 +49,13 @@ export default {
         }
     }
 };
+
+function transformManifestEntry(manifestEntry) {
+    if (!manifestEntry.url.match(/\.[a-z0-9]{8}\.[a-z0-9]{2,}$/)) {
+        const hash = createHash("MD5");
+        const file = readFileSync(`output/${manifestEntry.url}`);
+        hash.update(file);
+        manifestEntry.revision = hash.digest("hex");
+    }
+    return manifestEntry;
+}
