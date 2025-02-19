@@ -9,12 +9,19 @@ on:
     - cron: 30 9 * * 1
 
 jobs:
-  analyze:
-    name: Analyze
+  scan:
+    name: Scan
     runs-on: ubuntu-latest
-    timeout-minutes: 360
     permissions:
       security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: javascript-typescript
+            build-mode: none
+          - language: actions
+            build-mode: none
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -22,7 +29,10 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: javascript-typescript
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
