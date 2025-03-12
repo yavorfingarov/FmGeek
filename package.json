@@ -31,8 +31,8 @@
         "vitest": "3.0.8"
     },
     "dependencies": {
-        "@alpinejs/persist": "3.14.8",
-        "alpinejs": "3.14.8",
+        "@alpinejs/persist": "3.14.9",
+        "alpinejs": "3.14.9",
         "hls.js": "1.5.20",
         "simpledotcss": "2.3.4"
     }
