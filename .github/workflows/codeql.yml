@@ -8,6 +8,9 @@ on:
   schedule:
     - cron: 30 9 * * 1
 
+permissions:
+  contents: read
+
 jobs:
   scan:
     name: Scan
@@ -24,15 +27,15 @@ jobs:
             build-mode: none
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@6bb031afdd8eb862ea3fc1848194185e076637e5
         with:
           languages: ${{ matrix.language }}
           build-mode: ${{ matrix.build-mode }}
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@6bb031afdd8eb862ea3fc1848194185e076637e5
         with:
           category: "/language:${{matrix.language}}"
