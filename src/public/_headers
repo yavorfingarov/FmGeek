@@ -1,6 +1,6 @@
 /*
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'none'; manifest-src 'self'; worker-src 'self'; style-src 'self'; script-src 'self' 'unsafe-eval'; img-src 'self' data:; media-src https:; form-action 'none'; frame-ancestors 'none'; base-uri 'none';
+  Content-Security-Policy: default-src 'none'; manifest-src 'self'; worker-src 'self'; connect-src 'self'; style-src 'self'; script-src 'self' 'unsafe-eval'; img-src 'self' data:; media-src https:; form-action 'none'; frame-ancestors 'none'; base-uri 'none';
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
