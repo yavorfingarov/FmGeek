@@ -73,6 +73,9 @@ export function player() {
             },
             stop() {
                 this.$refs.player.pause();
+                if (this.hls) {
+                    this.hls.destroy();
+                }
                 if (!this.retryTimer) {
                     this.status.set("stopped");
                 }
