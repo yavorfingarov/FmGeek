@@ -21,11 +21,11 @@
         "@vite-pwa/assets-generator": "1.0.0",
         "@vitest/coverage-v8": "3.2.4",
         "eslint": "9.31.0",
-        "eslint-config-prettier": "10.1.5",
+        "eslint-config-prettier": "10.1.8",
         "globals": "16.3.0",
         "prettier": "3.6.2",
         "sass": "1.89.2",
-        "vite": "7.0.4",
+        "vite": "7.0.5",
         "vite-plugin-html-inject": "1.1.2",
         "vite-plugin-pwa": "1.0.1",
         "vitest": "3.2.4"
