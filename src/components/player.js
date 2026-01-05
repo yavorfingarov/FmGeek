@@ -73,6 +73,7 @@ export function player() {
             },
             stop() {
                 this.$refs.player.pause();
+                this.setMediaSession("paused");
                 if (this.hls) {
                     this.hls.destroy();
                 }
@@ -114,6 +115,20 @@ export function player() {
                     this.retryTimer = null;
                 }
             },
+            setMediaSession(state) {
+                if ("mediaSession" in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: this.$store.player.current.name,
+                        artwork: [
+                            { src: "/maskable-icon-512x512.png", sizes: "512x512", type: "image/png" }
+                        ]
+                    });
+                    navigator.mediaSession.playbackState = state;
+                    navigator.mediaSession.setActionHandler("play", () => this.play());
+                    navigator.mediaSession.setActionHandler("pause", () => this.stop());
+                    navigator.mediaSession.setActionHandler("stop", () => this.stop());
+                }
+            },
             onPlay() {
                 this.status.set("loading");
                 if (this.overridePlayEvent) {
@@ -123,6 +138,7 @@ export function player() {
             },
             onPlaying() {
                 this.status.set("playing");
+                this.setMediaSession("playing");
                 this.stopRetryTimer();
                 this.error = null;
                 this.togglePlayEnabled = true;
