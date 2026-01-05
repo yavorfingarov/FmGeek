@@ -10,7 +10,8 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: v2.x
+  DENO_VERSION: v2.x
+  NODE_VERSION: 22
   CLOUDFLARE_PROJECT: fmgeek
   CLOUDFLARE_BRANCH: ${{ github.event_name == 'push' && 'main' || 'test' }}
 
@@ -21,6 +22,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Set up Deno
         uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb
