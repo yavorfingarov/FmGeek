@@ -1,5 +1,10 @@
 import { describe, expect, test } from "vitest";
-import { defaultTimeout, defaultUiSettings, historyLength, defaultStations } from "../../src/components/settings.default";
+import {
+    defaultStations,
+    defaultTimeout,
+    defaultUiSettings,
+    historyLength
+} from "../../src/components/settings.default.js";
 
 test("defaultTimeout", function () {
     expect(defaultTimeout).toBe(120);
@@ -76,15 +81,13 @@ describe("defaultStations", function () {
                 if (response.ok) {
                     return true;
                 }
-            } catch (e) {
-                console.log(e);
-            }
+            } catch { /* Not interesting. */ }
             await sleep(i * 1000);
         }
         return false;
     }
 
     function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise((resolve) => setTimeout(resolve, ms));
     }
 });

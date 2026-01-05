@@ -1,8 +1,8 @@
 import Alpine from "alpinejs";
-import {Switch} from "./common/switch";
-import {updateHistory} from "./player.history";
-import {playbackErrorMessage, hlsNotSupportedErrorMessage} from "./common/messages";
-import {getStationDisplayName} from "./common/helpers";
+import { Switch } from "./common/switch.js";
+import { updateHistory } from "./player.history.js";
+import { hlsNotSupportedErrorMessage, playbackErrorMessage } from "./common/messages.js";
+import { getStationDisplayName } from "./common/helpers.js";
 
 const retryTimeout = 10000;
 const togglePlayTimeout = 5000;

@@ -1,11 +1,11 @@
 import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
-import {header} from "./components/header";
-import {navigation} from "./components/navigation";
-import {settings} from "./components/settings";
-import {player} from "./components/player";
+import { header } from "./components/header.js";
+import { navigation } from "./components/navigation.js";
+import { settings } from "./components/settings.js";
+import { player } from "./components/player.js";
 
-window.Alpine = Alpine;
+globalThis.Alpine = Alpine;
 Alpine.plugin(persist);
 header();
 navigation();

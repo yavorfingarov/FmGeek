@@ -1,9 +1,9 @@
-import {getStationDisplayName} from "./common/helpers";
+import { getStationDisplayName } from "./common/helpers.js";
 import {
     getDuplicateValueErrorMessage,
     getParseStationsErrorMessage,
     getUnsupportedStreamErrorMessage
-} from "./common/messages";
+} from "./common/messages.js";
 
 export function parseStations(json) {
     const data = JSON.parse(json);
@@ -12,10 +12,10 @@ export function parseStations(json) {
         const groupNames = new Set();
         for (let i = 0; i < data.length; i++) {
             if (!isValid(data[i].groupName)) {
-                throwParseStationsError({index: i, property: "groupName"});
+                throwParseStationsError({ index: i, property: "groupName" });
             }
             if (typeof data[i].prependToStationName !== "boolean") {
-                throwParseStationsError({group: data[i].groupName, property: "prependToStationName"});
+                throwParseStationsError({ group: data[i].groupName, property: "prependToStationName" });
             }
             if (groupNames.has(data[i].groupName)) {
                 const message = getDuplicateValueErrorMessage("group name", data[i].groupName);
@@ -33,7 +33,7 @@ export function parseStations(json) {
 function validateStations(stationNames, stations, group) {
     if (!Array.isArray(stations) || stations.length === 0) {
         const property = group?.groupName ? "stations" : null;
-        throwParseStationsError({group: group?.groupName, property});
+        throwParseStationsError({ group: group?.groupName, property });
     }
     for (let i = 0; i < stations.length; i++) {
         validateStation(stationNames, i, stations[i], group);
@@ -42,16 +42,16 @@ function validateStations(stationNames, stations, group) {
 
 function validateStation(stationNames, index, station, group) {
     if (station == null || typeof station !== "object" || Array.isArray(station)) {
-        throwParseStationsError({index, group: group?.groupName});
+        throwParseStationsError({ index, group: group?.groupName });
     }
     if (!isValid(station.name)) {
-        throwParseStationsError({index, group: group?.groupName, property: "name"});
+        throwParseStationsError({ index, group: group?.groupName, property: "name" });
     }
     if (!isValid(station.stream)) {
-        throwParseStationsError({index, group: group?.groupName, property: "stream"});
+        throwParseStationsError({ index, group: group?.groupName, property: "stream" });
     }
     if (station.website != null && !isValid(station.website)) {
-        throwParseStationsError({index, group: group?.groupName, property: "website"});
+        throwParseStationsError({ index, group: group?.groupName, property: "website" });
     }
     if (!station.stream.startsWith("https://")) {
         const message = getUnsupportedStreamErrorMessage(group?.groupName, station.name);
@@ -70,7 +70,7 @@ function isValid(input) {
     return input && typeof input === "string" && input.length > 0 && !/^\s*$/.test(input);
 }
 
-function throwParseStationsError({group, index, property}) {
+function throwParseStationsError({ group, index, property }) {
     const message = getParseStationsErrorMessage(group, index, property);
     throw Error(message);
 }

@@ -30,7 +30,8 @@
         @error="onError()"
         @pause="stop()"
         @timer-stop.window="stop()"
-    ></audio>
+    >
+    </audio>
     <p class="center smaller error" x-text="error"></p>
     <div class="flex center wrap smaller margin">
         <template x-for="(station, index) in recent" :key="station.name">
@@ -49,7 +50,8 @@
                     class="flat padding no-margin no-overflow"
                     x-text="station.name"
                     @click="selectStation(station)"
-                ></button>
+                >
+                </button>
             </template>
         </div>
     </template>
@@ -63,7 +65,8 @@
                             class="flat padding no-margin no-overflow"
                             x-text="station.name"
                             @click="selectStation(station, group.prependToStationName ? group.groupName : null)"
-                        ></button>
+                        >
+                        </button>
                     </template>
                 </div>
             </div>

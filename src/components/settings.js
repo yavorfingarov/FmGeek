@@ -1,12 +1,12 @@
 import Alpine from "alpinejs";
-import {defaultUiSettings, defaultStations, historyLength, defaultTimeout} from "./settings.default";
-import {parseStations} from "./settings.import";
+import { defaultStations, defaultTimeout, defaultUiSettings, historyLength } from "./settings.default.js";
+import { parseStations } from "./settings.import.js";
 import {
-    saveConfirmMessage,
     copyErrorMessage,
     discardChangesConfirmMessage,
-    resetConfirmMessage
-} from "./common/messages";
+    resetConfirmMessage,
+    saveConfirmMessage
+} from "./common/messages.js";
 
 export function settings() {
     Alpine.store("settings", {

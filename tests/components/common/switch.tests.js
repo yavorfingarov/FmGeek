@@ -1,5 +1,5 @@
-import {describe, expect, test} from "vitest";
-import {Switch} from "../../../src/components/common/switch";
+import { describe, expect, test } from "vitest";
+import { Switch } from "../../../src/components/common/switch.js";
 
 describe("Switch", function () {
     test("is empty when no initial value is passed", function () {

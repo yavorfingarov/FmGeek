@@ -1,6 +1,6 @@
-import {describe, expect, test} from "vitest";
-import {generateStations} from "../common/stations";
-import {updateHistory} from "../../src/components/player.history";
+import { describe, expect, test } from "vitest";
+import { generateStations } from "../common/stations.js";
+import { updateHistory } from "../../src/components/player.history.js";
 
 describe("updateHistory", function () {
     const historyLength = 10;
@@ -23,7 +23,7 @@ describe("updateHistory", function () {
 
     test("handles selected matching current", function () {
         const history = generateStations(historyLength);
-        const result = updateHistory(history, historyLength, selected, {name: "selectedName"});
+        const result = updateHistory(history, historyLength, selected, { name: "selectedName" });
         expect(result).toBe(history);
     });
 
