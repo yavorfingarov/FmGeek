@@ -56,4 +56,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: npm
           command: pages deploy ./dist/ --project-name=${{ env.CLOUDFLARE_PROJECT }} --branch=${{ env.CLOUDFLARE_BRANCH }} --commit-dirty=true
