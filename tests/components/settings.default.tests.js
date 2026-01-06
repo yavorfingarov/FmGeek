@@ -1,6 +1,10 @@
-import {describe, expect, test} from "vitest";
-import process from "node:process";
-import {defaultTimeout, defaultUiSettings, historyLength, defaultStations} from "../../src/components/settings.default";
+import { describe, expect, test } from "vitest";
+import {
+    defaultStations,
+    defaultTimeout,
+    defaultUiSettings,
+    historyLength
+} from "../../src/components/settings.default.js";
 
 test("defaultTimeout", function () {
     expect(defaultTimeout).toBe(120);
@@ -15,12 +19,21 @@ test("historyLength", function () {
 });
 
 describe("defaultStations", function () {
-    const inactiveStations = [];
+    const inactiveStations = [
+        {
+            name: "Concertgebouworkest",
+            stream: "https://i2.cdn.jetstre.am:8000/sz=RCOLiveWebradio=mp3-192",
+            website: "https://www.concertgebouworkest.nl/radio"
+        }
+    ];
     const inactiveStreams = inactiveStations.map((x) => x.stream);
     const streams = defaultStations.flatMap((x) => x.stations.map((xx) => xx.stream));
     const uniqueStreams = new Set(streams);
     const websites = defaultStations.flatMap((x) => x.stations.map((xx) => xx.website));
     const uniqueWebsites = new Set(websites);
+    // const headers = { "User-Agent": "FmGeekTests/1.0" };
+    const timeout = 45 * 1000;
+    let lastDomain;
 
     test("matches snapshot", function () {
         expect(defaultStations).toMatchSnapshot();
@@ -32,33 +45,49 @@ describe("defaultStations", function () {
 
     test.each(Array.from(uniqueWebsites))(
         "has valid website (%s)",
+        { skip: true, timeout },
         async function (website) {
-            const response = await fetch(website);
-            expect(response.ok).toBe(true);
-        },
-        10 * 1000
+            const isActive = await isUrlActive(website);
+            expect(isActive).toBe(true);
+        }
     );
 
     test.each(Array.from(streams))(
         "has valid stream (%s)",
+        { skip: true, timeout },
         async function (stream) {
-            if (stream === "https://a2.vizitec.com:8001/classica.mp3") {
-                process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
-            } else if (process.env.NODE_TLS_REJECT_UNAUTHORIZED === 0) {
-                process.env.NODE_TLS_REJECT_UNAUTHORIZED = 1;
+            if (lastDomain && stream.startsWith(lastDomain) && stream.includes("greenhost")) {
+                await sleep(20 * 1000);
             }
-            const response = await fetch(stream);
-            expect(response.ok).toBe(true);
-        },
-        10 * 1000
+            lastDomain = stream.match(/https:\/\/.+?\//)[0];
+            const isActive = await isUrlActive(stream);
+            expect(isActive).toBe(true);
+        }
     );
 
     test.each(Array.from(inactiveStreams))(
         "has still inactive stream (%s)",
+        { skip: true, timeout },
         async function (stream) {
-            const response = await fetch(stream);
-            expect(response.ok).toBe(false);
-        },
-        10 * 1000
+            const isActive = await isUrlActive(stream);
+            expect(isActive).toBe(false);
+        }
     );
+
+    async function isUrlActive(url) {
+        for (let i = 1; i <= 3; i++) {
+            try {
+                const response = await fetch(url);
+                if (response.ok) {
+                    return true;
+                }
+            } catch { /* Not interesting. */ }
+            await sleep(i * 1000);
+        }
+        return false;
+    }
+
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
 });

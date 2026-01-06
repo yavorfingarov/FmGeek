@@ -68,11 +68,6 @@ export const defaultStations = [
                 website: "https://radioclassica.bg/"
             },
             {
-                name: "Concertgebouworkest",
-                stream: "https://i2.cdn.jetstre.am:8000/sz=RCOLiveWebradio=mp3-192",
-                website: "https://www.concertgebouworkest.nl/radio"
-            },
-            {
                 name: "Ancient FM",
                 stream: "https://mediaserv73.live-streams.nl:18058/stream",
                 website: "https://ancientfm.com/"
@@ -312,17 +307,17 @@ export const defaultStations = [
             },
             {
                 name: "Jazz24 Seattle",
-                stream: "https://live.amperwave.net/direct/ppm-jazz24aac256-ibc1",
+                stream: "https://knkx-live-a.edge.audiocdn.com/6285_128k",
                 website: "https://www.jazz24.org/"
             },
             {
                 name: "WBGO Newark",
-                stream: "https://wbgo.streamguys1.com/wbgo",
+                stream: "https://ais-sa8.cdnstream1.com/3629_128.mp3",
                 website: "https://www.wbgo.org/"
             },
             {
-                name: "WBGO The Jazz Bee",
-                stream: "https://wbgo.streamguys1.com/thejazzstream",
+                name: "WBGO Too",
+                stream: "https://ais-sa8.cdnstream1.com/3630_128.mp3",
                 website: "https://www.wbgo.org/"
             },
             {

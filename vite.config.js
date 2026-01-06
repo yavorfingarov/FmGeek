@@ -1,18 +1,21 @@
-import {VitePWA} from "vite-plugin-pwa";
+/// <reference types="vitest/config" />
+
+import { VitePWA } from "vite-plugin-pwa";
+import { minimal2023Preset } from "@vite-pwa/assets-generator/config";
 import injectHTML from "vite-plugin-html-inject";
-import {createHash} from "crypto";
-import {readFileSync} from "fs";
-import {manifest} from "./src/manifest";
+import { manifest } from "./src/manifest.js";
 
 /** @type {import('vite').UserConfig} */
 
 export default {
     root: "./src",
+    cacheDir: "../node_modules/.vite",
     server: {},
     build: {
-        outDir: "../output",
+        outDir: "../dist",
         emptyOutDir: true,
         assetsDir: "./",
+        chunkSizeWarningLimit: 600,
         rollupOptions: {
             output: {
                 entryFileNames: "[name].[hash].js",
@@ -30,32 +33,28 @@ export default {
             workbox: {
                 cleanupOutdatedCaches: true,
                 globPatterns: ["**/*.{html,js,css,ico,png,svg}"],
-                manifestTransforms: [
-                    (entries) => {
-                        return {
-                            manifest: entries.map(transformManifestEntry)
-                        };
-                    }
-                ]
+                dontCacheBustURLsMatching: /\.[a-z0-9]{8}\.[a-z0-9]{2,}$/
             },
-            manifest
+            manifest,
+            pwaAssets: {
+                injectThemeColor: false,
+                headLinkOptions: {
+                    preset: "2023"
+                },
+                preset: {
+                    ...minimal2023Preset,
+                    maskable: {
+                        sizes: [512],
+                        resizeOptions: {
+                            background: manifest.background_color
+                        }
+                    }
+                }
+            }
         })
     ],
     test: {
         dir: "./tests",
-        include: "**/*.tests.js",
-        coverage: {
-            reportsDirectory: "../tests/.coverage"
-        }
+        include: "**/*.tests.js"
     }
 };
-
-function transformManifestEntry(manifestEntry) {
-    if (!manifestEntry.url.match(/\.[a-z0-9]{8}\.[a-z0-9]{2,}$/)) {
-        const hash = createHash("MD5");
-        const file = readFileSync(`output/${manifestEntry.url}`);
-        hash.update(file);
-        manifestEntry.revision = hash.digest("hex");
-    }
-    return manifestEntry;
-}

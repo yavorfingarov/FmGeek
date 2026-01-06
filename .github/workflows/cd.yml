@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  NODE_VERSION: 22
+  DENO_VERSION: v2.x
   CLOUDFLARE_PROJECT: fmgeek
   CLOUDFLARE_BRANCH: ${{ github.event_name == 'push' && 'main' || 'test' }}
 
@@ -20,31 +20,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
 
-      - name: Set up Node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a
+      - name: Set up Deno
+        uses: denoland/setup-deno@e95548e56dfa95d4e1a28d6f422fafe75c4c26fb
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          deno-version: ${{ env.DENO_VERSION }}
 
       - name: Install packages
-        run: npm ci
+        run: deno task install
 
-      - name: Check style
-        run: npm run style:check
+      - name: Check
+        run: deno task check
+
+      - name: Format
+        run: deno task format
 
       - name: Lint
-        run: npm run lint:check
+        run: deno task lint
 
       - name: Test
-        run: npm run test
+        run: deno task test
 
       - name: Build
-        run: npm run build
+        run: deno task build
 
       - name: Deploy
-        uses: cloudflare/wrangler-action@392082e81ffbcb9ebdde27400634aa004b35ea37
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./output/ --project-name=${{ env.CLOUDFLARE_PROJECT }} --branch=${{ env.CLOUDFLARE_BRANCH }} --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: deno task deploy ./dist/ --project-name=${{ env.CLOUDFLARE_PROJECT }} --branch=${{ env.CLOUDFLARE_BRANCH }} --commit-dirty=true

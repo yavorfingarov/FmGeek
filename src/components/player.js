@@ -1,10 +1,11 @@
 import Alpine from "alpinejs";
-import {Switch} from "./common/switch";
-import {updateHistory} from "./player.history";
-import {playbackErrorMessage, hlsNotSupportedErrorMessage} from "./common/messages";
-import {getStationDisplayName} from "./common/helpers";
+import { Switch } from "./common/switch.js";
+import { updateHistory } from "./player.history.js";
+import { hlsNotSupportedErrorMessage, playbackErrorMessage } from "./common/messages.js";
+import { getStationDisplayName } from "./common/helpers.js";
 
 const retryTimeout = 10000;
+const onErrorRetryLimit = 3;
 const togglePlayTimeout = 5000;
 
 let Hls = null;
@@ -27,6 +28,7 @@ export function player() {
             status: new Switch("set", "stopped"),
             togglePlayEnabled: true,
             retryTimer: null,
+            onErrorRetries: 0,
             overridePlayEvent: true,
             error: null,
             updateRecent() {
@@ -73,17 +75,17 @@ export function player() {
             },
             stop() {
                 this.$refs.player.pause();
+                this.setMediaSession("paused");
+                this.onErrorRetries = 0;
                 if (this.hls) {
                     this.hls.destroy();
+                    this.hls = null;
                 }
                 if (!this.retryTimer) {
                     this.status.set("stopped");
                 }
             },
             async load() {
-                if (this.hls) {
-                    this.hls.destroy();
-                }
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
                     await this.importHls();
                     this.hls = new Hls();
@@ -98,7 +100,7 @@ export function player() {
             async importHls() {
                 try {
                     if (!Hls) {
-                        const hlsModule = await import("hls.js");
+                        const hlsModule = await import("hls.js/light");
                         Hls = hlsModule.Hls;
                     }
                 } catch {
@@ -114,16 +116,32 @@ export function player() {
                     this.retryTimer = null;
                 }
             },
+            setMediaSession(state) {
+                if ("mediaSession" in navigator) {
+                    navigator.mediaSession.metadata = new MediaMetadata({
+                        title: this.$store.player.current.name,
+                        artwork: [
+                            { src: "/maskable-icon-512x512.png", sizes: "512x512", type: "image/png" }
+                        ]
+                    });
+                    navigator.mediaSession.playbackState = state;
+                    navigator.mediaSession.setActionHandler("play", () => this.play());
+                    navigator.mediaSession.setActionHandler("pause", () => this.stop());
+                    navigator.mediaSession.setActionHandler("stop", () => this.stop());
+                }
+            },
             onPlay() {
                 this.status.set("loading");
-                if (this.overridePlayEvent) {
+                if (this.overridePlayEvent && this.onErrorRetries === 0) {
                     this.play();
                 }
                 this.overridePlayEvent = true;
             },
             onPlaying() {
                 this.status.set("playing");
+                this.setMediaSession("playing");
                 this.stopRetryTimer();
+                this.onErrorRetries = 0;
                 this.error = null;
                 this.togglePlayEnabled = true;
             },
@@ -134,10 +152,19 @@ export function player() {
                 }
             },
             onError() {
-                this.stop();
-                this.togglePlayEnabled = true;
-                if (!this.retryTimer) {
-                    this.error = playbackErrorMessage;
+                if (globalThis.document.hidden && this.onErrorRetries < onErrorRetryLimit) {
+                    this.onErrorRetries++;
+                    this.play();
+                } else {
+                    if (this.$refs.player.error) {
+                        // deno-lint-ignore no-console
+                        console.error(this.$refs.player.error);
+                    }
+                    this.stop();
+                    this.togglePlayEnabled = true;
+                    if (!this.retryTimer) {
+                        this.error = playbackErrorMessage;
+                    }
                 }
             },
             onHlsError(error) {

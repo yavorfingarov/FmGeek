@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" x-data :class="$store.settings.ui.theme">
     <head>
         <meta charset="UTF-8" />
@@ -20,12 +20,10 @@
         />
         <meta name="theme-color" content="#212121" />
         <title x-data x-text="$store.player.current?.name ?? 'FmGeek'"></title>
-        <link rel="icon" href="./icons/favicon.ico" sizes="48x48" />
-        <link rel="icon" href="./icons/favicon.svg" sizes="any" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180x180.png" />
         <link rel="stylesheet" href="./style.scss" />
         <script type="module" src="./main.js"></script>
     </head>
+
     <body>
         <noscript>
             <p class="center error">Please enable JavaScript to use this application.</p>
