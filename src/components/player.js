@@ -5,6 +5,7 @@ import { hlsNotSupportedErrorMessage, playbackErrorMessage } from "./common/mess
 import { getStationDisplayName } from "./common/helpers.js";
 
 const retryTimeout = 10000;
+const onErrorRetryLimit = 3;
 const togglePlayTimeout = 5000;
 
 let Hls = null;
@@ -27,6 +28,7 @@ export function player() {
             status: new Switch("set", "stopped"),
             togglePlayEnabled: true,
             retryTimer: null,
+            onErrorRetries: 0,
             overridePlayEvent: true,
             error: null,
             updateRecent() {
@@ -74,17 +76,16 @@ export function player() {
             stop() {
                 this.$refs.player.pause();
                 this.setMediaSession("paused");
+                this.onErrorRetries = 0;
                 if (this.hls) {
                     this.hls.destroy();
+                    this.hls = null;
                 }
                 if (!this.retryTimer) {
                     this.status.set("stopped");
                 }
             },
             async load() {
-                if (this.hls) {
-                    this.hls.destroy();
-                }
                 if (this.$store.player.current.stream.endsWith(".m3u8")) {
                     await this.importHls();
                     this.hls = new Hls();
@@ -99,7 +100,7 @@ export function player() {
             async importHls() {
                 try {
                     if (!Hls) {
-                        const hlsModule = await import("hls.js");
+                        const hlsModule = await import("hls.js/light");
                         Hls = hlsModule.Hls;
                     }
                 } catch {
@@ -131,7 +132,7 @@ export function player() {
             },
             onPlay() {
                 this.status.set("loading");
-                if (this.overridePlayEvent) {
+                if (this.overridePlayEvent && this.onErrorRetries === 0) {
                     this.play();
                 }
                 this.overridePlayEvent = true;
@@ -140,6 +141,7 @@ export function player() {
                 this.status.set("playing");
                 this.setMediaSession("playing");
                 this.stopRetryTimer();
+                this.onErrorRetries = 0;
                 this.error = null;
                 this.togglePlayEnabled = true;
             },
@@ -150,10 +152,19 @@ export function player() {
                 }
             },
             onError() {
-                this.stop();
-                this.togglePlayEnabled = true;
-                if (!this.retryTimer) {
-                    this.error = playbackErrorMessage;
+                if (globalThis.document.hidden && this.onErrorRetries < onErrorRetryLimit) {
+                    this.onErrorRetries++;
+                    this.play();
+                } else {
+                    if (this.$refs.player.error) {
+                        // deno-lint-ignore no-console
+                        console.error(this.$refs.player.error);
+                    }
+                    this.stop();
+                    this.togglePlayEnabled = true;
+                    if (!this.retryTimer) {
+                        this.error = playbackErrorMessage;
+                    }
                 }
             },
             onHlsError(error) {
