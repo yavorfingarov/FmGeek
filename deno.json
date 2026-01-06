@@ -13,11 +13,11 @@
         "deploy": "wrangler pages deploy"
     },
     "imports": {
+        "@alpinejs/csp": "npm:@alpinejs/csp@3.15.3",
         "@alpinejs/persist": "npm:@alpinejs/persist@3.15.3",
         "@vite-pwa/assets-generator": "npm:@vite-pwa/assets-generator@1.0.2",
-        "alpinejs": "npm:alpinejs@3.15.3",
         "hls.js": "npm:hls.js@1.6.15",
-        "sass": "npm:sass@1.97.1",
+        "sass": "npm:sass@1.97.2",
         "simpledotcss": "npm:simpledotcss@2.3.7",
         "vite": "npm:vite@7.3.0",
         "vite-plugin-html-inject": "npm:vite-plugin-html-inject@1.1.2",
@@ -28,7 +28,6 @@
     "allowScripts": [
         "npm:@parcel/watcher@2.5.1",
         "npm:esbuild@0.27.0",
-        "npm:esbuild@0.27.2",
         "npm:sharp@0.33.5",
         "npm:workerd@1.20251210.0"
     ],

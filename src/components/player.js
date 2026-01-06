@@ -1,4 +1,4 @@
-import Alpine from "alpinejs";
+import Alpine from "@alpinejs/csp";
 import { Switch } from "./common/switch.js";
 import { updateHistory } from "./player.history.js";
 import { hlsNotSupportedErrorMessage, playbackErrorMessage } from "./common/messages.js";
@@ -33,6 +33,9 @@ export function player() {
             error: null,
             updateRecent() {
                 this.recent = this.history.slice(0, this.$store.settings.ui.recentCount);
+            },
+            hasWebsite() {
+                return this.$store.player.current?.website;
             },
             selectStation(station, groupName) {
                 station = {

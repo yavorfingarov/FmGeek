@@ -1,4 +1,4 @@
-import Alpine from "alpinejs";
+import Alpine from "@alpinejs/csp";
 import { Switch } from "./common/switch.js";
 
 export function navigation() {

@@ -1,19 +1,25 @@
 {
   "version": "5",
   "specifiers": {
+    "npm:@alpinejs/csp@3.15.3": "3.15.3",
     "npm:@alpinejs/persist@3.15.3": "3.15.3",
     "npm:@vite-pwa/assets-generator@1.0.2": "1.0.2",
-    "npm:alpinejs@3.15.3": "3.15.3",
     "npm:hls.js@1.6.15": "1.6.15",
-    "npm:sass@1.97.1": "1.97.1",
+    "npm:sass@1.97.2": "1.97.2",
     "npm:simpledotcss@2.3.7": "2.3.7",
     "npm:vite-plugin-html-inject@1.1.2": "1.1.2",
-    "npm:vite-plugin-pwa@1.2.0": "1.2.0_@vite-pwa+assets-generator@1.0.2_vite@7.3.0__sass@1.97.1__picomatch@4.0.3_workbox-build@7.4.0__ajv@8.17.1__@babel+core@7.28.5__rollup@2.79.2_workbox-window@7.4.0_sass@1.97.1",
-    "npm:vite@7.3.0": "7.3.0_sass@1.97.1_picomatch@4.0.3",
-    "npm:vitest@4.0.16": "4.0.16_vite@7.3.0__sass@1.97.1__picomatch@4.0.3_sass@1.97.1",
+    "npm:vite-plugin-pwa@1.2.0": "1.2.0_@vite-pwa+assets-generator@1.0.2_vite@7.3.0__sass@1.97.2__picomatch@4.0.3_workbox-build@7.4.0__ajv@8.17.1__@babel+core@7.28.5__rollup@2.79.2_workbox-window@7.4.0_sass@1.97.2",
+    "npm:vite@7.3.0": "7.3.0_sass@1.97.2_picomatch@4.0.3",
+    "npm:vitest@4.0.16": "4.0.16_vite@7.3.0__sass@1.97.2__picomatch@4.0.3_sass@1.97.2",
     "npm:wrangler@4.54.0": "4.54.0_unenv@2.0.0-rc.24_workerd@1.20251210.0"
   },
   "npm": {
+    "@alpinejs/csp@3.15.3": {
+      "integrity": "sha512-n9Z6LoX6T25k3I2Lnbg5TH2Dlt+MDU6z3PFQ8OYd5GOuacw17aiRkeHd8VRRMq17q8yWchjmzg5xt1Y/HskEeg==",
+      "dependencies": [
+        "@vue/reactivity"
+      ]
+    },
     "@alpinejs/persist@3.15.3": {
       "integrity": "sha512-QOxhNhZxOEKIawGt7WqdFl4Z9V2k0EN006Iwqq+HCI21WSB8fwVxfaL1ICnOPhtg0OwW4zG6/nMvzA4gLFS92A=="
     },
@@ -1519,7 +1525,7 @@
         "tinyrainbow"
       ]
     },
-    "@vitest/mocker@4.0.16_vite@7.3.0__sass@1.97.1__picomatch@4.0.3_sass@1.97.1": {
+    "@vitest/mocker@4.0.16_vite@7.3.0__sass@1.97.2__picomatch@4.0.3_sass@1.97.2": {
       "integrity": "sha512-yb6k4AZxJTB+q9ycAvsoxGn+j/po0UaPgajllBgt1PzoMAAmJGYFdDk0uCcRcxb3BrME34I6u8gHZTQlkqSZpg==",
       "dependencies": [
         "@vitest/spy",
@@ -1589,12 +1595,6 @@
         "fast-uri",
         "json-schema-traverse",
         "require-from-string"
-      ]
-    },
-    "alpinejs@3.15.3": {
-      "integrity": "sha512-fSI6F5213FdpMC4IWaup92KhuH3jBX0VVqajRJ6cOTCy1cL6888KyXdGO+seAAkn+g6fnrxBqQEx6gRpQ5EZoQ==",
-      "dependencies": [
-        "@vue/reactivity"
       ]
     },
     "ansi-regex@5.0.1": {
@@ -2794,8 +2794,8 @@
         "is-regex"
       ]
     },
-    "sass@1.97.1": {
-      "integrity": "sha512-uf6HoO8fy6ClsrShvMgaKUn14f2EHQLQRtpsZZLeU/Mv0Q1K5P0+x2uvH6Cub39TVVbWNSrraUhDAoFph6vh0A==",
+    "sass@1.97.2": {
+      "integrity": "sha512-y5LWb0IlbO4e97Zr7c3mlpabcbBtS+ieiZ9iwDooShpFKWXf62zz5pEPdwrLYm+Bxn1fnbwFGzHuCLSA9tBmrw==",
       "dependencies": [
         "chokidar",
         "immutable",
@@ -3256,7 +3256,7 @@
     "vite-plugin-html-inject@1.1.2": {
       "integrity": "sha512-4DWANEcAw73H5JLWTAI4EvXdSyoGqGq/Is9fTRjpF+SJLor58LNdqB+YYnK3FOLwx6LMTAn4z1hkiRyc52lYLg=="
     },
-    "vite-plugin-pwa@1.2.0_@vite-pwa+assets-generator@1.0.2_vite@7.3.0__sass@1.97.1__picomatch@4.0.3_workbox-build@7.4.0__ajv@8.17.1__@babel+core@7.28.5__rollup@2.79.2_workbox-window@7.4.0_sass@1.97.1": {
+    "vite-plugin-pwa@1.2.0_@vite-pwa+assets-generator@1.0.2_vite@7.3.0__sass@1.97.2__picomatch@4.0.3_workbox-build@7.4.0__ajv@8.17.1__@babel+core@7.28.5__rollup@2.79.2_workbox-window@7.4.0_sass@1.97.2": {
       "integrity": "sha512-a2xld+SJshT9Lgcv8Ji4+srFJL4k/1bVbd1x06JIkvecpQkwkvCncD1+gSzcdm3s+owWLpMJerG3aN5jupJEVw==",
       "dependencies": [
         "@vite-pwa/assets-generator",
@@ -3271,7 +3271,7 @@
         "@vite-pwa/assets-generator"
       ]
     },
-    "vite@7.3.0_sass@1.97.1_picomatch@4.0.3": {
+    "vite@7.3.0_sass@1.97.2_picomatch@4.0.3": {
       "integrity": "sha512-dZwN5L1VlUBewiP6H9s2+B3e3Jg96D0vzN+Ry73sOefebhYr9f94wwkMNN/9ouoU8pV1BqA1d1zGk8928cx0rg==",
       "dependencies": [
         "esbuild",
@@ -3290,7 +3290,7 @@
       ],
       "bin": true
     },
-    "vitest@4.0.16_vite@7.3.0__sass@1.97.1__picomatch@4.0.3_sass@1.97.1": {
+    "vitest@4.0.16_vite@7.3.0__sass@1.97.2__picomatch@4.0.3_sass@1.97.2": {
       "integrity": "sha512-E4t7DJ9pESL6E3I8nFjPa4xGUd3PmiWDLsDztS2qXSJWfHtbQnwAWylaBvSNY48I3vr8PTqIZlyK8TE3V3CA4Q==",
       "dependencies": [
         "@vitest/expect",
@@ -3605,11 +3605,11 @@
   },
   "workspace": {
     "dependencies": [
+      "npm:@alpinejs/csp@3.15.3",
       "npm:@alpinejs/persist@3.15.3",
       "npm:@vite-pwa/assets-generator@1.0.2",
-      "npm:alpinejs@3.15.3",
       "npm:hls.js@1.6.15",
-      "npm:sass@1.97.1",
+      "npm:sass@1.97.2",
       "npm:simpledotcss@2.3.7",
       "npm:vite-plugin-html-inject@1.1.2",
       "npm:vite-plugin-pwa@1.2.0",
