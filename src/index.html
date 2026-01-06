@@ -19,7 +19,7 @@
             :content="(theme === 'auto' || theme === 'dark') ? '#212121' : '#fefefe'"
         />
         <meta name="theme-color" content="#212121" />
-        <title x-data x-text="$store.player.current?.name ?? 'FmGeek'"></title>
+        <title x-data x-text="$store.player.current ? $store.player.current.name : 'FmGeek'"></title>
         <link rel="stylesheet" href="./style.scss" />
         <script type="module" src="./main.js"></script>
     </head>

@@ -1,6 +1,6 @@
 <section x-show="$store.navigation.player" x-data="player">
     <h1 class="center no-overflow">
-        <template x-if="$store.player.current?.website">
+        <template x-if="hasWebsite()">
             <a
                 class="no-decoration"
                 target="_blank"
@@ -10,8 +10,8 @@
             >
             </a>
         </template>
-        <template x-if="!$store.player.current?.website">
-            <span x-text="$store.player.current?.name"></span>
+        <template x-if="!hasWebsite()">
+            <span x-text="$store.player.current ? $store.player.current.name : ''"></span>
         </template>
     </h1>
     <div class="flex center">
