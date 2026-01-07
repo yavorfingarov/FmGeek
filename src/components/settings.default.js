@@ -7,7 +7,7 @@ export const defaultUiSettings = {
 
 export const historyLength = 10;
 
-export const defaultStations = [
+const defaultStations = [
     {
         groupName: "Classical",
         prependToStationName: false,
@@ -372,6 +372,11 @@ export const defaultStations = [
                 website: "https://somafm.com/bossa/"
             },
             {
+                name: "Thistle",
+                stream: "https://ice1.somafm.com/thistle-128-mp3",
+                website: "https://somafm.com/thistle/"
+            },
+            {
                 name: "Fluid",
                 stream: "https://ice1.somafm.com/fluid-128-mp3",
                 website: "https://somafm.com/fluid/"
@@ -390,6 +395,11 @@ export const defaultStations = [
                 name: "Drone Zone",
                 stream: "https://ice1.somafm.com/dronezone-256-mp3",
                 website: "https://somafm.com/dronezone/"
+            },
+            {
+                name: "n5MD",
+                stream: "https://ice1.somafm.com/n5md-128-mp3",
+                website: "https://somafm.com/n5md/"
             },
             {
                 name: "Synphaera",
@@ -435,3 +445,41 @@ export const defaultStations = [
         ]
     }
 ];
+
+const somaFmChristmasStations = [
+    {
+        name: "Christmas Lounge",
+        stream: "https://ice1.somafm.com/christmas-256-mp3",
+        website: "https://somafm.com/christmas/"
+    },
+    {
+        name: "Department Store Christmas",
+        stream: "https://ice1.somafm.com/deptstore-256-mp3",
+        website: "https://somafm.com/deptstore/"
+    },
+    {
+        name: "Christmas Rocks!",
+        stream: "https://ice1.somafm.com/xmasrocks-128-mp3",
+        website: "https://somafm.com/xmasrocks/"
+    },
+    {
+        name: "Jolly Ol' Soul",
+        stream: "https://ice1.somafm.com/jollysoul-128-mp3",
+        website: "https://somafm.com/jollysoul/"
+    },
+    {
+        name: "Xmas in Frisko",
+        stream: "https://ice1.somafm.com/xmasinfrisko-128-mp3",
+        website: "https://somafm.com/xmasinfrisko/"
+    }
+];
+
+export function getDefaultStations(christmas) {
+    if (!christmas) {
+        return defaultStations;
+    }
+    const stations = JSON.parse(JSON.stringify(defaultStations));
+    const somaFmIndex = stations.findIndex((x) => x.groupName === "SomaFM");
+    stations[somaFmIndex].stations = [...stations[somaFmIndex].stations, ...somaFmChristmasStations];
+    return stations;
+}

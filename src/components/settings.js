@@ -1,5 +1,5 @@
 import Alpine from "@alpinejs/csp";
-import { defaultStations, defaultTimeout, defaultUiSettings, historyLength } from "./settings.default.js";
+import { defaultTimeout, defaultUiSettings, getDefaultStations, historyLength } from "./settings.default.js";
 import { parseStations } from "./settings.import.js";
 import {
     copyErrorMessage,
@@ -10,7 +10,14 @@ import {
 
 export function settings() {
     Alpine.store("settings", {
-        stations: Alpine.$persist(defaultStations),
+        init() {
+            const now = new Date();
+            const month = now.getMonth() + 1;
+            const christmas = month === 12 || month === 1;
+            this.defaultStations = getDefaultStations(christmas);
+        },
+        stations: null,
+        defaultStations: null,
         historyLength,
         ui: Alpine.$persist(defaultUiSettings)
     });
@@ -18,12 +25,23 @@ export function settings() {
     Alpine.data("settings", function () {
         return {
             init() {
-                this.load(this.$store.settings.stations, false);
+                this.loadStations();
+                this.loadJson(this.stations, false);
             },
             timeout: this.$persist(defaultTimeout),
             timer: null,
             minutesLeft: null,
-            load(stations, jsonDirty) {
+            source: this.$persist("default"),
+            stations: this.$persist(this.$store.settings.defaultStations),
+            json: null,
+            jsonDirty: false,
+            error: null,
+            loadStations() {
+                this.$store.settings.stations = (this.source === "default")
+                    ? this.$store.settings.defaultStations
+                    : this.stations;
+            },
+            loadJson(stations, jsonDirty) {
                 this.json = JSON.stringify(stations, null, 2);
                 this.jsonDirty = jsonDirty;
                 this.error = null;
@@ -67,8 +85,9 @@ export function settings() {
                     return;
                 }
                 if (confirm(saveConfirmMessage)) {
+                    this.stations = stations;
                     this.$store.settings.stations = stations;
-                    this.init();
+                    this.loadJson(this.stations, false);
                 }
             },
             copy() {
@@ -78,11 +97,11 @@ export function settings() {
             },
             discardChanges() {
                 if (confirm(discardChangesConfirmMessage)) {
-                    this.init();
+                    this.loadJson(this.stations, false);
                 }
             },
             loadDefault() {
-                this.load(defaultStations, true);
+                this.loadJson(this.$store.settings.defaultStations, true);
             },
             reset() {
                 if (confirm(resetConfirmMessage)) {
