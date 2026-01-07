@@ -37,47 +37,62 @@
             />
         </fieldset>
         <fieldset>
-            <legend>Edit</legend>
-            <label for="edit">Stations</label>
-            <textarea id="edit" class="smaller" spellcheck="false" x-model="json" @input="jsonDirty = true"></textarea>
-            <details>
-                <summary>Help</summary>
-                <p>
-                    Depending on your preferences, you can have a <code>Station</code> or a
-                    <code>StationGroup</code>
-                    <a href="https://json-schema.org/understanding-json-schema/reference/array" target="_blank">
-                        JSON array</a>.
-                </p>
-                <dl>
-                    <dt>Station</dt>
-                    <dd>
+            <legend>Stations</legend>
+            <label for="source">Source</label>
+            <select id="source" x-model="source" @change="loadStations()">
+                <option value="default">Default</option>
+                <option value="local">Local</option>
+            </select>
+            <template x-if="source === 'local'">
+                <div>
+                    <label for="edit">Edit</label>
+                    <textarea
+                        id="edit"
+                        class="smaller"
+                        spellcheck="false"
+                        x-model="json"
+                        @input="jsonDirty = true"
+                    ></textarea>
+                    <details>
+                        <summary>Help</summary>
+                        <p>
+                            Depending on your preferences, you can have a <code>Station</code> or a
+                            <code>StationGroup</code>
+                            <a href="https://json-schema.org/understanding-json-schema/reference/array" target="_blank">
+                                JSON array</a>.
+                        </p>
                         <dl>
-                            <dt>name</dt>
-                            <dd>String</dd>
-                            <dt>stream</dt>
-                            <dd>String</dd>
-                            <dt>website</dt>
-                            <dd>String <em>(optional)</em></dd>
+                            <dt>Station</dt>
+                            <dd>
+                                <dl>
+                                    <dt>name</dt>
+                                    <dd>String</dd>
+                                    <dt>stream</dt>
+                                    <dd>String</dd>
+                                    <dt>website</dt>
+                                    <dd>String <em>(optional)</em></dd>
+                                </dl>
+                            </dd>
+                            <dt>StationGroup</dt>
+                            <dd>
+                                <dl>
+                                    <dt>groupName</dt>
+                                    <dd>String</dd>
+                                    <dt>prependToStationName</dt>
+                                    <dd>Boolean</dd>
+                                    <dt>stations</dt>
+                                    <dd>Station[]</dd>
+                                </dl>
+                            </dd>
                         </dl>
-                    </dd>
-                    <dt>StationGroup</dt>
-                    <dd>
-                        <dl>
-                            <dt>groupName</dt>
-                            <dd>String</dd>
-                            <dt>prependToStationName</dt>
-                            <dd>Boolean</dd>
-                            <dt>stations</dt>
-                            <dd>Station[]</dd>
-                        </dl>
-                    </dd>
-                </dl>
-            </details>
-            <button type="button" @click="copy()">Copy</button>
-            <button type="button" @click="loadDefault()">Load default</button>
-            <button type="button" :disabled="!jsonDirty" @click="discardChanges()">Discard changes</button>
-            <button type="button" :disabled="!jsonDirty" @click="save()">Save</button>
-            <p class="error" x-show="error" x-text="error"></p>
+                    </details>
+                    <button type="button" @click="copy()">Copy</button>
+                    <button type="button" @click="loadDefault()">Load default</button>
+                    <button type="button" :disabled="!jsonDirty" @click="discardChanges()">Discard changes</button>
+                    <button type="button" :disabled="!jsonDirty" @click="save()">Save</button>
+                    <p class="error" x-show="error" x-text="error"></p>
+                </div>
+            </template>
         </fieldset>
         <fieldset>
             <legend>Danger Zone</legend>
