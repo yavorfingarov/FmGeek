@@ -29,6 +29,7 @@ export default {
         injectHTML(),
         VitePWA({
             registerType: "autoUpdate",
+            injectRegister: "script-defer",
             includeManifestIcons: false,
             workbox: {
                 cleanupOutdatedCaches: true,

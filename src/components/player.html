@@ -1,19 +1,23 @@
 <section x-show="$store.navigation.player" x-data="player">
-    <h1 class="center no-overflow">
-        <template x-if="hasWebsite()">
-            <a
-                class="no-decoration"
-                target="_blank"
-                rel="noopener norefferer nofollow"
-                x-text="$store.player.current.name"
-                :href="$store.player.current.website"
-            >
-            </a>
-        </template>
-        <template x-if="!hasWebsite()">
-            <span x-text="$store.player.current ? $store.player.current.name : ''"></span>
-        </template>
-    </h1>
+    <template x-if="$store.player.current">
+        <div>
+            <template x-if="$store.player.current.website">
+                <h1 class="center no-overflow">
+                    <a
+                        class="no-decoration"
+                        target="_blank"
+                        rel="noopener norefferer nofollow"
+                        x-text="$store.player.current.name"
+                        :href="$store.player.current.website"
+                    >
+                    </a>
+                </h1>
+            </template>
+            <template x-if="!$store.player.current.website">
+                <h1 class="center no-overflow" x-text="$store.player.current.name"></h1>
+            </template>
+        </div>
+    </template>
     <div class="flex center">
         <button class="flat no-padding no-margin no-hover-effect" @click="togglePlay()">
             <img class="pop" x-show="status.stopped" src="icons/play.svg" alt="Play" />

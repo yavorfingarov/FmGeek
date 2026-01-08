@@ -1,4 +1,4 @@
-import Alpine from "@alpinejs/csp";
+import Alpine from "alpinejs";
 import persist from "@alpinejs/persist";
 import { migrate } from "./migrator.js";
 import { header } from "./components/header.js";

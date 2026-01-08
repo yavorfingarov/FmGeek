@@ -1,4 +1,4 @@
-import Alpine from "@alpinejs/csp";
+import Alpine from "alpinejs";
 
 export function header() {
     Alpine.data("header", function () {
