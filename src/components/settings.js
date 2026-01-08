@@ -1,4 +1,4 @@
-import Alpine from "@alpinejs/csp";
+import Alpine from "alpinejs";
 import { defaultTimeout, defaultUiSettings, getDefaultStations, historyLength } from "./settings.default.js";
 import { parseStations } from "./settings.import.js";
 import {

@@ -19,7 +19,7 @@
             :content="(theme === 'auto' || theme === 'dark') ? '#212121' : '#fefefe'"
         />
         <meta name="theme-color" content="#212121" />
-        <title x-data x-text="$store.player.current ? $store.player.current.name : 'FmGeek'"></title>
+        <title x-text="$store.player.current ? $store.player.current.name : 'FmGeek'"></title>
         <link rel="stylesheet" href="./style.scss" />
         <script type="module" src="./main.js"></script>
     </head>
@@ -28,7 +28,7 @@
         <noscript>
             <p class="center error">Please enable JavaScript to use this application.</p>
         </noscript>
-        <main x-data x-cloak>
+        <main x-cloak>
             <load src="./components/header.html" />
             <load src="./components/navigation.html" />
             <load src="./components/settings.html" />
